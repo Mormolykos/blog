@@ -1,0 +1,6 @@
+# BedVibe Studios — Engineering
+Author: Panagiotis (Panos) Gkilis
+Portfolio: https://tts.bedvibe.studio/portfolio/
+Articles:
+- https://ai.bedvibe.studio/trainproof.html
+- https://ai.bedvibe.studio/ttsproof.html

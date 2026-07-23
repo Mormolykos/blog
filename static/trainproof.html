@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loss Curves Lie: Building a Deterministic Linter for ML Training Runs</title>
+  <meta name="description" content="A run learning pure noise reduced its loss by 62% and looked textbook-healthy. trainproof catches the training failures that can be caught — and is honest about the ones that can't.">
+  <link rel="canonical" href="https://ai.bedvibe.studio/trainproof.html">
+  <meta property="og:title" content="Loss Curves Lie: Building a Deterministic Linter for ML Training Runs">
+  <meta property="og:description" content="A run learning pure noise reduced its loss by 62% and looked textbook-healthy. trainproof catches the training failures that can be caught — and is honest about the ones that can't.">
+  <meta property="og:type" content="article">
+  <link rel="icon" type="image/png" href="/BVfavicom.png">
+  <link rel="stylesheet" href="/style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": "https://ai.bedvibe.studio/trainproof.html#article",
+    "headline": "Loss Curves Lie: Building a Deterministic Linter for ML Training Runs",
+    "description": "A run learning pure noise reduced its loss by 62% and looked textbook-healthy. trainproof catches the training failures that can be caught — and is honest about the ones that can't.",
+    "url": "https://ai.bedvibe.studio/trainproof.html",
+    "mainEntityOfPage": "https://ai.bedvibe.studio/trainproof.html",
+    "datePublished": "2026-07-19",
+    "dateModified": "2026-07-19",
+    "author": { "@type": "Person", "@id": "https://bedvibe.studio/panagiotis-panos-gkilis/#person", "name": "Panagiotis (Panos) Gkilis" },
+    "publisher": { "@id": "https://bedvibe.studio/#organization" },
+    "isPartOf": { "@id": "https://ai.bedvibe.studio/#blog" },
+    "about": { "@type": "SoftwareApplication", "name": "trainproof", "url": "https://github.com/Mormolykos/trainproof" }
+  }
+  </script>
+</head>
+<body>
+  <header>
+    <a class="corner-link" href="https://bedvibe.studio/" target="_blank">bedvibe.studio</a>
+    <a href="/"><img src="/Bedvibe-logo.webp" alt="BedVibe Studios" class="logo"></a>
+    <h1>BedVibe Studios — Engineering</h1>
+  </header>
+  <nav>
+    <a href="/">Home</a> ·
+    <a href="/articles.html">Articles</a> ·
+    <a href="https://tts.bedvibe.studio/portfolio/" target="_blank">Portfolio</a> ·
+    <a href="https://github.com/Mormolykos" target="_blank">GitHub</a>
+  </nav>
+  <main>
+    <article>
+<h1>Loss Curves Lie: Building a Deterministic Linter for ML Training Runs</h1>
+<p><em>A run learning pure noise reduced its loss by 62% and looked textbook-healthy. trainproof catches the training failures that can be caught — and is honest about the ones that can't.</em></p>
+<hr>
+<p>I kept losing GPU hours to runs that were already dead. A fine-tune that had quietly gone to NaN somewhere after step 300 and trained on garbage the rest of the night. A run that was training at learning-rate-<em>zero</em> the whole time and updating nothing. A dataset with a few hundred broken rows I only discovered at the end. Every time, the pattern was the same: the run <em>looked</em> like it was working, and nothing told me otherwise until the hours were already spent.</p>
+<p>So I built a linter for training runs — <strong>trainproof</strong> — and then I spent days trying to prove it wrong.</p>
+<pre><code class="language-bash">pip install trainproof
+trainproof doctor .   # zero-config: discovers and judges every training log it finds
+</code></pre>
+<p><em>Repo: <a href="https://github.com/Mormolykos/trainproof" target="_blank">github.com/Mormolykos/trainproof</a> (MIT)</em></p>
+<h2>The philosophy: no ML judging ML</h2>
+<p>The most important decision in trainproof is what it <em>isn't</em>. There's no model scoring your run. No "87%-confidence this looks unhealthy." <strong>Every verdict is a deterministic rule that either fires or it doesn't, and every finding cites the exact numbers behind it.</strong> When it can't be sure, it says so instead of guessing.</p>
+<p>That constraint is the whole point. A reliability tool that hallucinates is worse than no tool, because now you don't trust your own alarms. trainproof's engine is IO-free and doesn't even import torch — it reads plain logs and applies rules. You can read every rule and know exactly why it fired.</p>
+<h2>The experiment: sabotage, on purpose</h2>
+<p>To find out whether the rules actually caught anything, I ran a fault-injection study. One base setup — a Qwen2.5-3B QLoRA on an RTX 5080 — run five ways:</p>
+<ul>
+<li><strong>healthy</strong> — the control.</li>
+<li><strong>lr_hot</strong> — learning rate cranked 100× too high.</li>
+<li><strong>lr_zero</strong> — learning rate at zero.</li>
+<li><strong>fp16_nan</strong> — an fp16 overflow that NaNs the loss.</li>
+<li><strong>bad_labels</strong> — the dataset's labels shuffled into pure noise.</li>
+</ul>
+<p>Three seeds each: <strong>15 runs</strong>, real logs, all shipped in the repo so you can reproduce every verdict.</p>
+<p>Four of the five failures got caught fast. <code>lr_hot</code> spiked the gradient norm to <strong>2,650× the median</strong> — flagged in seconds. The NaN and the flatline were trivial. But one config beat the tool completely, and it's the one that taught me the most.</p>
+<h2>The one that fooled it: shuffled labels</h2>
+<p><code>bad_labels</code> was pure garbage — a dataset that <em>cannot be learned</em>, because the labels no longer correspond to the inputs. And that run <strong>reduced its loss by 62%.</strong></p>
+<p>On its own loss curve it looked like textbook-healthy training: a clean downward slope. It was learning absolutely nothing useful — just memorizing the statistics of noise, which any sufficiently large network will happily do. From a single run's loss curve, <strong>it is indistinguishable from a real run.</strong> No loss-only rule, looking at that run in isolation, can catch it.</p>
+<p>That's not a gap I papered over — I wrote it straight into the README. It's also <em>why</em> trainproof has a <code>compare</code> mode: the failure becomes obvious the moment you put the run next to a known-good baseline and look at the <em>relative</em> floor it reaches. The corrupted run's loss floor sits in a different regime. One run in isolation lies; two runs side by side tell the truth.</p>
+<h2>What trainproof actually does</h2>
+<p>It covers a run's whole life, and every stage exits with a status code so it drops straight into CI:</p>
+<ul>
+<li><strong>Before a single GPU-second — <code>preflight</code>.</strong> Lints the dataset and tokenizer: malformed JSONL (with the line number), empty rows, duplicates, missing <code>eos_token</code>, <code>pad == eos</code>, over-length samples. Catch the broken dataset <em>before</em> you rent the GPU.</li>
+<li><strong>During training — the guardian.</strong> A one-line Hugging Face callback. It warns by default; flip on <code>stop_on_fail</code> and it will abort a doomed run itself. In one guarded demo, it killed a diverging run at <strong>step 20 of 300 scheduled steps</strong> — so 280/300 (≈93%) of the scheduled steps never executed. (That's a statement about <em>that run</em>, not a promise about your GPU bill — but a diverging run you stop at step 20 is a diverging run you didn't pay to finish.)</li>
+<li><strong>After — the coroner.</strong> Reads the finished log and classifies it: diverged, flatlined, NaN'd, spiked.</li>
+<li><strong>Versus a baseline — <code>compare</code>.</strong> The relative-floor rules that catch the shuffled-labels case.</li>
+</ul>
+<p>It reads the logs you already produce — Hugging Face <code>trainer_state.json</code>, Coqui, plain JSONL/CSV — so there's nothing to instrument.</p>
+<h2>Try it</h2>
+<pre><code class="language-bash">pip install trainproof
+</code></pre>
+<ul>
+<li>Repo (with all 15 sabotaged runs' real logs): <strong><a href="https://github.com/Mormolykos/trainproof" target="_blank">https://github.com/Mormolykos/trainproof</a></strong></li>
+<li>MIT licensed.</li>
+</ul>
+<p>If you fine-tune, you've had at least one of these failures. I'd genuinely like to know <strong>which failure mode has burned your GPU hours</strong> — if a deterministic check would have caught it, tell me on the repo and it goes in, with credit.</p>
+<h2>Update: three releases later</h2>
+<p>Since this article was written, trainproof has grown from the experiment above into a fuller tool (v0.8.0 at the time of this update):</p>
+<ul>
+<li><strong><code>trainproof doctor .</code></strong> — point it at a directory; it discovers every training log, judges them all, and prints a triage-sorted summary. The five sabotaged runs above are now one command.</li>
+<li><strong>Guardian telemetry</strong> — the Hugging Face callback measures wall-clock step time live; deterministic rules catch step-time cliffs and dataloader-bound runs, and <code>watch --stall-timeout</code> warns when the log stops growing.</li>
+<li><strong>Stable rule IDs</strong> (<code>TP-DIVERGE</code>, <code>TP-DEAD-RUN</code>, …) documented in <a href="https://github.com/Mormolykos/trainproof/blob/main/RULES.md" target="_blank">RULES.md</a>, an honest PASS that lists which checks ran and which were skipped, and <code>--json</code> output built for CI pipelines and AI coding agents.</li>
+</ul>
+<hr>
+<h3>About the Author</h3>
+<p>Panagiotis "Panos" Gkilis is an independent AI systems developer and the founder of BedVibe Studios. He builds deterministic ML reliability layers, custom RAG systems, and AI evaluation tools.</p>
+<p>🔗 See more of his shipped systems at <strong><a href="https://tts.bedvibe.studio/portfolio" target="_blank">tts.bedvibe.studio/portfolio</a></strong><br>
+🔗 GitHub: <strong><a href="https://github.com/Mormolykos" target="_blank">@Mormolykos</a></strong></p>
+    </article>
+  </main>
+  <footer>
+    <a href="https://bedvibe.studio/panagiotis-panos-gkilis/" target="_blank">Panagiotis (Panos) Gkilis — BedVibe Studios</a> &middot;
+    <a href="https://www.linkedin.com/in/panagiotis-gkilis-57995117b/" target="_blank">LinkedIn</a>
+  </footer>
+</body>
+</html>
