@@ -1,0 +1,421 @@
+{
+  "_meta": {
+    "schema_version": 1,
+    "generated_at": "2026-07-24",
+    "generated_by": "gen_site_data.py — mechanical fields and release entries harvested from GitHub Releases + PyPI and measured with pytest --collect-only. Release summaries, when present, are hand-authored; the producer never writes them.",
+    "sources": [
+      "C:\\Users\\User\\Desktop\\blog\\static\\ (live static site — structure, copy, design)",
+      "portfolio/corpus/projects/trainproof-history.md (verified 2026-07-24 harvest)",
+      "portfolio/corpus/projects/ttsproof-history.md (verified 2026-07-24 harvest)"
+    ],
+    "flags": [
+      "CLOSED 2026-07-29: trainproof v0.10.0 was published on PyPI (2026-07-23) with NO GitHub Release entry — only a git tag (6bd9d8f9) — which is why the corpus harvest disagreed with itself (GitHub Releases showed 9, PyPI showed 0.10.0). The Release entry has now been published from the repo's CHANGELOG.md, and both sources report 10 releases.",
+      "CLOSED 2026-07-29: trainproof.tests_passing was frozen at 57 (the v0.9.0 figure) because the 0.10.0 changelog states no new total, and inventing one was correctly refused. The count is now MEASURED, not inferred: `python -m pytest --collect-only -q` reports 85 tests at v0.10.0 (ttsproof reports 42). 57 is the number of distinct TP-* rule IDs, which is a different quantity and had been conflated with the test count on other surfaces.",
+      "CLOSED 2026-07-29: the trainproof article prose said 'After — the coroner.' The 0.10.0 changelog states the `coroner` command was NEVER implemented and corrects it to `epoch`. Corrected in the article and in this file's project description; naming a command that does not exist is an error rather than historical record, since a reader would go looking for it."
+    ]
+  },
+  "site": {
+    "name": "BedVibe Studios — Engineering",
+    "tagline": "Engineering notes on AI systems, speech technology, ML reliability, evaluation, and production infrastructure — by Panagiotis (Panos) Gkilis. Articles are based on real systems, real experiments, and open-source projects.",
+    "short_description": "Engineering notes on AI systems, speech technology, ML reliability, evaluation, and production infrastructure.",
+    "base_url": "https://ai.bedvibe.studio/",
+    "author": {
+      "name": "Panagiotis (Panos) Gkilis",
+      "url": "https://bedvibe.studio/panagiotis-panos-gkilis/",
+      "linkedin": "https://www.linkedin.com/in/panagiotis-gkilis-57995117b/",
+      "person_id": "https://bedvibe.studio/panagiotis-panos-gkilis/#person",
+      "bio": "Panagiotis \"Panos\" Gkilis is an independent AI systems developer and the founder of BedVibe Studios. He builds deterministic ML reliability layers, custom RAG systems, and AI evaluation tools."
+    },
+    "org_url": "https://bedvibe.studio/",
+    "org_id": "https://bedvibe.studio/#organization",
+    "portfolio_url": "https://tts.bedvibe.studio/portfolio/",
+    "github_url": "https://github.com/Mormolykos",
+    "corner_link": {
+      "label": "bedvibe.studio",
+      "href": "https://bedvibe.studio/"
+    },
+    "nav": [
+      {
+        "label": "Home",
+        "href": "/",
+        "external": false
+      },
+      {
+        "label": "Articles",
+        "href": "/articles/",
+        "external": false
+      },
+      {
+        "label": "Portfolio",
+        "href": "https://tts.bedvibe.studio/portfolio/",
+        "external": true
+      },
+      {
+        "label": "GitHub",
+        "href": "https://github.com/Mormolykos",
+        "external": true
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "ttsproof",
+      "name": "ttsproof",
+      "tagline": "Automated failure-mode QA for text-to-speech.",
+      "description": "Splits structural audio defects from pronunciation errors, canonicalizes both expected text and ASR transcript to spoken form for equivalence-aware WER/CER, and quarantines ASR-uncertain short utterances for human review instead of guessing.",
+      "status": "active",
+      "current_version": "0.3.1",
+      "current_release_date": "2026-07-18",
+      "install": "pip install ttsproof",
+      "repo": "https://github.com/Mormolykos/ttsproof",
+      "pypi": "https://pypi.org/project/ttsproof/",
+      "license": "MIT",
+      "doi": "10.5281/zenodo.20757553",
+      "doi_url": "https://doi.org/10.5281/zenodo.20757553",
+      "tests_passing": 42,
+      "release_count": 4,
+      "article_id": "ttsproof",
+      "highlights": [
+        "Built-in benchmark corpus: 817 curated cases across 39 categories, versioned independently of the software",
+        "Equivalence-aware WER/CER with diacritic folding (Reykjavik == Reykjavík)",
+        "ASR-uncertainty quarantine — sets aside cases too short to auto-judge instead of guessing",
+        "One-command engine benchmarking, self-contained HTML reports, and a CI regression gate",
+        "Backed by a citable 390-sample study (DOI 10.5281/zenodo.20757553, CC-BY-4.0)"
+      ],
+      "releases": [
+        {
+          "version": "0.3.1",
+          "date": "2026-07-18",
+          "title": "Comma-grouped number fix (first community PR)",
+          "summary": "normalize_text(\"1,000\") now expands to \"one thousand\" instead of \"one zero\". The thousands separator is stripped only when a comma sits between a digit and exactly three following digits, so comma-as-punctuation stays untouched. First outside contribution (PR #1). Tests 38 → 42.",
+          "url": "https://github.com/Mormolykos/ttsproof/releases/tag/v0.3.1"
+        },
+        {
+          "version": "0.3.0",
+          "date": "2026-07-10",
+          "title": "Benchmark Corpus 1.0 (817 cases / 39 categories)",
+          "summary": "Corpus grows to 817 curated cases across 39 categories — pronunciation-torture words, proper names, scientific + medical vocab, tongue twisters, homographs, time zones, file paths, SQL/JSON/markup. Independent corpus versioning recorded in every report; diacritic-folding comparison. SpeechSDK example for benchmarking closed-source engines.",
+          "url": "https://github.com/Mormolykos/ttsproof/releases/tag/v0.3.0"
+        },
+        {
+          "version": "0.2.0",
+          "date": "2026-07-10",
+          "title": "Built-in benchmark corpus + one-command benchmarking",
+          "summary": "Built-in corpus of 528 cases / 30 categories, policy-scored. One-command `ttsproof benchmark`, HTML reports with waveforms + audio, engine compare, CI regression gate, Norwegian/Greek-safe comparison.",
+          "url": "https://github.com/Mormolykos/ttsproof/releases/tag/v0.2.0"
+        },
+        {
+          "version": "0.1.0",
+          "date": "2026-07-10",
+          "title": "Automated failure-mode QA for TTS",
+          "summary": "Initial release: structural audio checks, equivalence-aware WER/CER, ASR-uncertainty quarantine.",
+          "url": "https://github.com/Mormolykos/ttsproof/releases/tag/v0.1.0"
+        }
+      ],
+      "tests_as_of_version": "0.3.1"
+    },
+    {
+      "id": "trainproof",
+      "name": "trainproof",
+      "tagline": "A deterministic linter for ML training runs.",
+      "description": "Deterministic PASS/WARN/FAIL verdicts across a training run's whole life — before it starts (dataset, tokenizer, and an environment preflight that catches a stack which will not import, an unreadable checkpoint, or too little system RAM), a live guardian during training, a post-run autopsy after, and a baseline compare. Reads five log formats including TensorBoard event files, decoded from the wire format with no torch, tensorflow or tensorboard installed. No ML judging ML: every verdict is a rule that fires or doesn't, every finding cites its exact numbers, and a check that could not run is reported as NOT-CHECKED rather than as a pass.",
+      "status": "active",
+      "current_version": "0.18.0",
+      "current_release_date": "2026-08-09",
+      "_note": "Mechanical fields (version, date, release_count, tests_passing) are written by gen_site_data.py from GitHub Releases, PyPI and pytest --collect-only; release titles and summaries are authored by hand because that producer refuses to invent prose. GitHub Releases and PyPI agree at 12 releases. v0.12.0 uploaded to PyPI 2026-07-31. Verified 2026-07-31.",
+      "install": "pip install trainproof",
+      "repo": "https://github.com/Mormolykos/trainproof",
+      "pypi": "https://pypi.org/project/trainproof/",
+      "license": "MIT",
+      "built_on": "ttsproof",
+      "tests_passing": 258,
+      "tests_as_of_version": "0.18.0",
+      "release_count": 18,
+      "article_id": "trainproof",
+      "highlights": [
+        "Objective checks: catches a cross-entropy ignore_index that is also a valid output class - a collision that silently deletes a target from the loss while leaving the loss curve indistinguishable from a correct run (0.0035 vs 0.0034)",
+        "trainproof doctor . — zero-config autopsy: discovers every training log in a directory, judges them, prints a triage-sorted summary",
+        "Live guardian: a one-line Hugging Face callback; opt-in stop_on_fail aborted a diverging Qwen2.5-3B QLoRA at step 20 of 300 in a real demo",
+        "Preflight: lints dataset + tokenizer before a single GPU-second (malformed JSONL, empty rows, duplicates, missing eos/pad, over-length)",
+        "compare catches shuffled-labels corruption that single-run loss rules cannot — the relative loss floor sits ~6× a known-good baseline",
+        "Stable rule IDs (TP-DIVERGE, TP-OVERFIT, TP-DEAD-RUN, …) documented in RULES.md, plus --json output built for CI and AI coding agents",
+        "CONTRACTS.md pins the promises — exit codes, JSON schema policy, rule-ID stability and a verdict-stability guarantee; SARIF 2.1.0 output turns findings into GitHub PR annotations",
+        "A PASS names every check that ran and every check it skipped, with the reason — a skipped check is never reported as a passed one",
+        "Grounded in an 18-run fault-injection study (Qwen2.5-3B QLoRA, RTX 5080) — six configurations at three seeds each, every real log shipped in-repo — plus a 9.8-hour Coqui XTTS fine-tune that diverged on its own, the first shipped failure nobody injected",
+        "Reads five log formats including TensorBoard event files, decoded from the wire format with no tensorflow, tensorboard, protobuf, torch or numpy — validated byte-exact against tensorboard's own EventAccumulator, and the rules are exercised on real runs from three frameworks: HuggingFace, Coqui XTTS and PyTorch Lightning"
+      ],
+      "releases": [
+        {
+          "version": "0.18.0",
+          "date": "2026-08-09",
+          "title": "v0.18.0 - the objective release",
+          "summary": "Every rule until now read the training run: the loss curve, the gradient norms, the learning rate. This release adds the first rules that read the OBJECTIVE - the output layer, the ignore sentinel, and which classes actually reach the loss as positive targets. TP-OBJ-IGNORE-INDEX-COLLISION fires when a cross-entropy ignore_index is a valid class in the output layer, so every target carrying that id is discarded before the loss and can never be learned. TP-OBJ-DEAD-CLASS fires when a class exists in the output layer but never once appears as a positive target while coverage of the others is broad. Both are decidable at step 0 and are deliberately independent of the curve, because the failure that motivated them is invisible to it: a minimal reproduction with the collision and without it ends at 0.0035 and 0.0034 final loss - indistinguishable, while the broken arm assigns the stop token a probability of 0.000001 and never terminates and the fixed arm assigns 0.996565 and terminates every time. The Hugging Face callback runs both once in on_train_begin, before step 1, inferring the output-layer width and the sentinel from the model and sampling the first batches of labels - no new call site, no user action, and under stop_on_fail a broken objective aborts the run before a GPU-second is spent. 84 -> 90 rule IDs, no existing rule, threshold or verdict changed. 245 -> 258 tests.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.18.0"
+        },
+        {
+          "version": "0.17.0",
+          "date": "2026-08-02",
+          "title": "v0.17.0 — the lint gate, and one log that used to vanish",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.17.0"
+        },
+        {
+          "version": "0.16.0",
+          "date": "2026-08-02",
+          "title": "v0.16.0 — the rule registry (no behaviour change)",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.16.0"
+        },
+        {
+          "version": "0.15.0",
+          "date": "2026-08-01",
+          "title": "v0.15.0 — the before-the-GPU release",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.15.0"
+        },
+        {
+          "version": "0.14.0",
+          "date": "2026-08-01",
+          "title": "The third-framework release",
+          "summary": "Every rule shipped so far had only ever been tested against HuggingFace trainer_state.json. PyTorch Lightning, Fish Speech and most research code write their metrics to TensorBoard event files and nowhere else, so those runs were invisible — a Lightning run could overfit for three hours and trainproof had nothing to read. Adds a fifth log format, tfevents, written from the wire format (TFRecord framing plus the Event, Summary and TensorProto fields required). It imports no tensorflow, no tensorboard, no protobuf, no torch and no numpy: reading a log file should not require installing a training stack. Validated against the reference implementation rather than against itself — on a real 2049-step Lightning run it reproduces tensorboard's own EventAccumulator byte-exact, all 13 tags, every point count, values to 1e-6. Rank-0 tensor scalars are decoded alongside simple_value, because Lightning writes the former and a reader handling only the latter sees an empty run. Tag normalisation resolves train/loss, TrainIterStats/loss and training/loss to one column; when several tags claim a column the denser series wins, ties alphabetical, so selection is deterministic. Truncated files — the normal state of a killed run — are read up to the cut. Fixes a TP-ZERO-GRAD false positive found by running the shipped rules against a real run rather than by a test: the rule condemned any run whose finite gradient norms were all exactly 0.0, and Coqui writes avg_grad_norm as 0.0 when clipping is off, so a healthy 125,000-step XTTS fine-tune that reached loss 0.017 was reported FAIL. A run cannot both learn and receive no gradient, so the check now stands down when the loss improved and stays armed when it did not. evidence/ ships the logs behind the claims: a 125,000-step Coqui XTTS v2 fine-tune as both a text log and the event file from the same run — parsed by independent readers, agreeing exactly, an agreement EVIDENCE_MATRIX now computes rather than asserts — and a 2049-step Fish Speech LoRA fine-tune whose eval loss bottomed out at step 99 and climbed to 16.19 while train loss kept falling. No new rule IDs (62) and no schema change (schema_version 3). 179 → 210 tests.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.14.0"
+        },
+        {
+          "version": "0.13.0",
+          "date": "2026-07-31",
+          "title": "The third-state release",
+          "summary": "A log that carried a loss column but executed zero check groups returned PASS with exit 0. \"Checked and clean\" and \"nothing could be checked\" shared one verdict and one exit code, which is the only surface CI reads. This release separates them. New verdict NOT-CHECKED and rule TP-NOT-CHECKED, emitted when zero check groups execute — in practice a short run with fewer than five finite loss points and a non-positive mean loss, the sub-threshold companion to TP-ZERO-LOSS. Its message states how many groups were considered and carries the skip reason for every one of them. Severity and exit code became two explicit axes: severity orders FAIL, WARN, NOT-CHECKED, PASS, while the exit code is 1 if anything failed, 2 if anything could not be judged, 0 otherwise. An unrecognised verdict now normalises to NOT-CHECKED instead of falling through as a pass, so the enum stays closed. The release also shipped with a defect caught in review before publication: the console renderer had no NOT-CHECKED branch and printed the new verdict as [FAIL] — a release designed to stop a false PASS would have shipped a false FAIL. schema_version 2 → 3, since the verdict enum gained a member. 171 → 179 tests.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.13.0"
+        },
+        {
+          "version": "0.12.0",
+          "date": "2026-07-31",
+          "title": "The honest-verdict release",
+          "summary": "No new diagnostic idea — every change closes a hole in a check that already existed. An audit asked what happens to a run whose loss is exactly 0.0 on every step, and the answer was: every loss-shape check skips, because each is guarded against dividing by zero, the verdict stays PASS, and the PASS then names those same three checks as having run. A run that learned nothing passed, and was told which checks had cleared it. New rules: TP-ZERO-LOSS and TP-ZERO-GRAD name the two degenerate series (all labels masked to -100; a severed backward graph, which was previously misdiagnosed as a dead run). TP-CMP-UNCOMPARABLE stops compare reporting a zero-loss run as favorable — a zero loss floor beats any baseline. TP-CMP-ERROR replaces a silent exception swallow in doctor --baseline. TP-PASS now reports only checks that actually executed, each skip with its reason, exposed as a structured checks key. TP-DIVERGE took its floor over all losses, so one 0.0 anywhere disabled divergence detection for a whole run. The Hugging Face callback had been dropping every eval entry, making TP-OVERFIT structurally unreachable there. Six threshold values in RULES.md disagreed with the code. 116 → 166 tests; all 38 golden snapshots byte-identical, so no existing verdict changed.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.12.0"
+        },
+        {
+          "version": "0.11.0",
+          "date": "2026-07-30",
+          "title": "The evidence release",
+          "summary": "No rule and no threshold changed — every verdict from 0.10.0 is byte-identical in tests/golden/. What changed is how much evidence ships, and whether the documents describing it can drift from the data. All three seeds of every gallery configuration now ship: 18 runs, six configurations at seeds 42/43/44, where previously only one seed per configuration was committed — so \"three seeds out of three\" became a claim a reader can check. New: examples/real_world/xtts_diverged, a 9.8-hour Coqui XTTS fine-tune that diverged on its own, the first shipped failure nobody injected and the only Coqui-format fixture. EVIDENCE_MATRIX.md is now generated from the logs by scripts/regenerate_evidence.py, version-stamped and carrying the rule IDs that fired in each cell, with a test that fails the build if it goes stale — it had been publishing v0.3-dev verdicts against a v0.10 engine. python -m trainproof now works. The HTML report became opt-in via epoch --html instead of being written into the caller's working directory on every run. 116 tests.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.11.0"
+        },
+        {
+          "version": "0.10.0",
+          "date": "2026-07-23",
+          "title": "The contract release",
+          "summary": "Nothing about how trainproof judges a run changed — no rule, no threshold, no verdict moved, and every gallery verdict is now locked byte-identical in tests/golden/. What changed is what trainproof promises, written down in CONTRACTS.md: exit codes, JSON schema policy, rule-ID stability, SARIF mapping, and the pre-1.0 breaking-change policy. Adds SARIF 2.1.0 output (--sarif) so findings become GitHub PR annotations, and --json on data/tokenizer/preflight. BREAKING: exit code 2 now means \"trainproof could not judge\" (unreadable logs, missing files, missing optional deps), separating tool errors from a FAIL verdict about your run; schema_version is now 2, with doctor merging compare findings into one findings array tagged by source. Fixes a real bug: doctor --baseline printed [FAIL] comparisons but still exited 0.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.10.0"
+        },
+        {
+          "version": "0.9.0",
+          "date": "2026-07-20",
+          "title": "The eval-aware release",
+          "summary": "Reads the eval curve. New TP-OVERFIT (WARN): eval_loss rising past 1.2× its own minimum while train_loss keeps falling (needs ≥ 4 eval points). Fixed a false TP-DIVERGE caused by HF's training-summary entry (a run-average train_loss) leaking into the per-step loss series. Grounded in a real Qwen2.5-3B QLoRA overfit run now in examples/gallery/overfit. 57 tests.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.9.0"
+        },
+        {
+          "version": "0.8.0",
+          "date": "2026-07-19",
+          "title": "The trust release",
+          "summary": "Canonical record contract — adapters are the only place columns map to canonical keys, exact-name matching (eval_loss can no longer be mistaken for training loss). Stable rule IDs documented in RULES.md. Honest PASS names which check groups ran and which were skipped. Machine-readable --json. BREAKING for text-parsers: output lines now carry the rule ID — parse --json. 52 tests.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.8.0"
+        },
+        {
+          "version": "0.7.0",
+          "date": "2026-07-19",
+          "title": "Guardian telemetry",
+          "summary": "Live step-time telemetry via TrainproofCallback. New deterministic timing rules that fire only when timing fields exist: step-time cliff (WARN) and dataloader-bound (WARN). Stall heartbeat: watch --stall-timeout warns once per stall episode when the log stops growing. Optional pynvml GPU utilization is display-only, never judged. 43 tests.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.7.0"
+        },
+        {
+          "version": "0.6.0",
+          "date": "2026-07-19",
+          "title": "The doctor release",
+          "summary": "trainproof doctor — zero-config autopsy over a file or a whole directory: auto-discovers logs, triage-sorted summary (failures first), per-log autopsy citing exact numbers. N-way compare table. BREAKING: compare baseline now comes FIRST. No engine or rule changes. 38 tests.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.6.0"
+        },
+        {
+          "version": "0.5.0",
+          "date": "2026-07-17",
+          "title": "Pre-flight: stop a run before it starts",
+          "summary": "trainproof preflight — deterministic dataset + tokenizer checks before training: malformed JSONL (with line number), empty rows, duplicates, missing eos_token, pad == eos, over-length samples. IO-free engine, lazy tokenizer load, non-zero exit for CI. Completes the lifecycle: preflight · guardian · epoch · compare.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.5.0"
+        },
+        {
+          "version": "0.4.0",
+          "date": "2026-07-17",
+          "title": "The Live Guardian",
+          "summary": "TrainproofCallback for HF Trainer — one line in your script, re-runs the deterministic rules live. warn by default (never interrupts); opt-in stop_on_fail aborts a doomed run. trainproof watch tails a growing log and exits non-zero on FAIL. Live proof: aborted a diverging Qwen2.5-3B QLoRA (LR 100× too high) at step 20 of 300.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.4.0"
+        },
+        {
+          "version": "0.3.0",
+          "date": "2026-07-17",
+          "title": "Compare engine",
+          "summary": "trainproof compare <baseline> <run> — ratio rules (loss-floor, end-loss, improvement deficit, grad-norm, baseline sanity) that catch the shuffled-labels run single-run rules can't (6× floor ratio, 3/3 seeds). Total-zero-LR fatality rule from the lr column. EVIDENCE_MATRIX.md: the fault-injection study across 3 seeds (15 real QLoRA runs).",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.3.0"
+        },
+        {
+          "version": "0.2.0",
+          "date": "2026-07-17",
+          "title": "The fault-injection gallery",
+          "summary": "Five real QLoRA runs (Qwen2.5-3B, RTX 5080) — one healthy, four with exactly one knob broken (LR ×100, LR 0, fp16 overflow, shuffled labels) — with unmodified logs shipped in-repo. Dead-run rule. HF/Coqui log adapters. The honest finding: the shuffled-labels run cut loss 62% while learning nothing — indistinguishable from healthy on a single curve.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.2.0"
+        },
+        {
+          "version": "0.1.0",
+          "date": "2026-07-17",
+          "title": "A linter for ML training runs",
+          "summary": "Deterministic PASS/WARN/FAIL verdicts before you burn GPU time: data preflight, tokenizer coverage, first-epoch verdict (NaN/Inf, divergence, dead runs, grad spikes, LR sanity, throughput). Field test flagged a real 11-hour XTTS fine-tune as diverging — final loss 1.9× above its minimum, reached at 82% of the run. Built on ttsproof.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.1.0"
+        }
+      ]
+    }
+  ],
+  "articles": [
+    {
+      "id": "observation-time",
+      "title": "My Tracker Threw Away One Good Measurement in Six. It Was Recording When the Data Arrived.",
+      "dek": "A live aircraft tracker that looked healthy was rejecting 16% of its own valid observations. The feed had been reporting how stale each measurement was the entire time, in a field I decoded and then ignored. The controlled A/B, the fix that would have made it worse, and the two unrelated failures it exposed.",
+      "path": "/observation-time/",
+      "canonical": "https://ai.bedvibe.studio/observation-time/",
+      "date_published": "2026-08-14",
+      "date_modified": "2026-08-14",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": null
+    },
+    {
+      "id": "fem-kirsch",
+      "title": "Ten Tests, Written Before the Code. The One That Failed Taught Me the Most",
+      "dek": "I wrote a finite element solver from nothing and pointed it at an answer known since 1898. It landed on 3.00002. Then a test I was sure would pass didn't, two explanations for why both collapsed, and a number the internet repeats confidently failed to reproduce.",
+      "path": "/fem-kirsch/",
+      "canonical": "https://ai.bedvibe.studio/fem-kirsch/",
+      "date_published": "2026-08-14",
+      "date_modified": "2026-08-14",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": "https://doi.org/10.5281/zenodo.21892064",
+      "image": "https://ai.bedvibe.studio/fem-mesh-stress.png"
+    },
+    {
+      "id": "speaker-drift",
+      "title": "How Little Your Voice Has to Change Before a Machine Stops Recognising It",
+      "dek": "Four speakers, eight matched sentences, three encoder architectures. One speaker moved his pitch by less than a semitone and lost a quarter of his identity score. Includes a control that could have killed the result, a prior-art audit that killed my headline claim, and a pre-registered prediction I withdrew because two defensible ways of cleaning the data gave opposite answers.",
+      "path": "/speaker-drift/",
+      "canonical": "https://ai.bedvibe.studio/speaker-drift/",
+      "date_published": "2026-08-13",
+      "date_modified": "2026-08-13",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": "https://doi.org/10.5281/zenodo.21921958"
+    },
+    {
+      "id": "canon-state",
+      "title": "The Canon Is the Database",
+      "dek": "A fictional universe outgrew my context window. So I stopped treating it as a pile of documents and started treating it as a persistent, machine-readable knowledge system that generation has to be validated against.",
+      "path": "/canon-state/",
+      "canonical": "https://ai.bedvibe.studio/canon-state/",
+      "date_published": "2026-08-11",
+      "date_modified": "2026-08-11",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": null
+    },
+    {
+      "id": "greybody",
+      "title": "Geometric Optics Lies: Reproducing a 1976 Black-Hole Calculation from Scratch",
+      "dek": "The standard shortcut overstates photon emission from a black hole by 4.16x. Six validation gates, two analytic limits the code was never tuned to, and one number I had to retract.",
+      "path": "/greybody/",
+      "canonical": "https://ai.bedvibe.studio/greybody/",
+      "date_published": "2026-08-10",
+      "date_modified": "2026-08-10",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": "https://doi.org/10.1103/PhysRevD.13.198",
+      "image": "https://ai.bedvibe.studio/greybody-spectrum.png"
+    },
+    {
+      "id": "ttsproof",
+      "title": "Your TTS Model Sounds Great — Until It Says \"GPUB\"",
+      "dek": "ttsproof: automated failure-mode QA for text-to-speech, backed by a published 390-sample study.",
+      "path": "/ttsproof/",
+      "canonical": "https://ai.bedvibe.studio/ttsproof/",
+      "date_published": "2026-07-19",
+      "date_modified": "2026-07-19",
+      "display_date": "July 2026",
+      "project_id": "ttsproof",
+      "og_type": "article",
+      "citation": "https://doi.org/10.5281/zenodo.20757553"
+    },
+    {
+      "id": "trainproof",
+      "title": "Loss Curves Lie: Building a Deterministic Linter for ML Training Runs",
+      "dek": "A run learning pure noise reduced its loss by 62% and looked textbook-healthy. trainproof catches the training failures that can be caught — and is honest about the ones that can't.",
+      "path": "/trainproof/",
+      "canonical": "https://ai.bedvibe.studio/trainproof/",
+      "date_published": "2026-07-19",
+      "date_modified": "2026-07-19",
+      "display_date": "July 2026",
+      "project_id": "trainproof",
+      "og_type": "article",
+      "citation": null
+    },
+    {
+      "id": "ai-authorship",
+      "title": "I Use AI to Write My Books. I Wrote the First One by Hand.",
+      "dek": "Six years, six books, one fantasy world, and a stack of tooling built to stop the machine from drifting. What \"AI-assisted\" actually looks like when a human directs the whole thing.",
+      "path": "/ai-authorship/",
+      "canonical": "https://ai.bedvibe.studio/ai-authorship/",
+      "date_published": "2026-08-07",
+      "date_modified": "2026-08-07",
+      "display_date": "August 2026",
+      "project_id": "",
+      "og_type": "article",
+      "citation": null
+    },
+    {
+      "id": "photopea-scripting",
+      "title": "Six Things Photopea's Scripting API Does That Nobody Wrote Down",
+      "dek": "Undocumented behaviours in Photopea's Live Messaging API - measured, with the workaround for each. If your automation reports success and changes nothing, one of these is probably why.",
+      "path": "/photopea-scripting/",
+      "canonical": "https://ai.bedvibe.studio/photopea-scripting/",
+      "date_published": "2026-08-08",
+      "date_modified": "2026-08-08",
+      "display_date": "August 2026",
+      "project_id": "",
+      "og_type": "article",
+      "citation": null
+    },
+    {
+      "id": "corrupted-training-data",
+      "title": "Why Corrupted Training Data Doesn't Show Up as High Loss",
+      "dek": "Everyone assumes bad samples announce themselves. Two failures from my own work - one reproducible, one from production - say the opposite: noise is learnable, so it hides.",
+      "path": "/corrupted-training-data/",
+      "canonical": "https://ai.bedvibe.studio/corrupted-training-data/",
+      "date_published": "2026-08-09",
+      "date_modified": "2026-08-09",
+      "display_date": "August 2026",
+      "project_id": "trainproof",
+      "og_type": "article",
+      "citation": null
+    },
+    {
+      "id": "eos-collision",
+      "title": "One Integer Deleted the Stop Token From My Loss. The Curve Never Noticed.",
+      "dek": "My text-to-speech model trained for weeks and never learned to stop talking. The cause was two constants that happened to be equal - and no loss curve, anywhere, could have told me.",
+      "path": "/eos-collision/",
+      "canonical": "https://ai.bedvibe.studio/eos-collision/",
+      "date_published": "2026-08-09",
+      "date_modified": "2026-08-09",
+      "display_date": "August 2026",
+      "project_id": "trainproof",
+      "og_type": "article",
+      "citation": null
+    }
+  ]
+}

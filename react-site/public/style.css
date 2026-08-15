@@ -1,0 +1,142 @@
+:root {
+  --bg-color: #0b0f1a;
+  --text-color: #d9dfe8;
+  --accent-color: #4db8ff;
+  --header-bg: #111827;
+  --nav-bg: #1f2937;
+  --border-color: #333;
+}
+html, body {
+  margin: 0; padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+a { color: var(--accent-color); text-decoration: none; }
+a:hover { text-decoration: underline; }
+header {
+  position: relative;
+  text-align: center; padding: 1.5rem 1rem 1.3rem;
+  background-color: var(--header-bg); border-bottom: 1px solid var(--border-color);
+}
+header .logo {
+  display: block; margin: 0 auto 0.8rem; width: 140px; height: auto;
+  animation: glowPulse 4s ease-in-out infinite;
+}
+@keyframes glowPulse {
+  0%, 100% { filter: drop-shadow(0 0 16px rgba(96, 178, 255, 0.5)); }
+  50%      { filter: drop-shadow(0 0 36px rgba(140, 205, 255, 0.85)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  header .logo { animation: none; filter: drop-shadow(0 0 20px rgba(96, 178, 255, 0.5)); }
+}
+header h1 {
+  margin: 0; font-size: 1.8rem; font-weight: 500; color: #e9edf5;
+  font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+  letter-spacing: 0.02em;
+}
+.corner-link {
+  position: absolute; top: 14px; right: 18px; font-size: 0.85rem;
+  color: #9fb6cc; letter-spacing: 0.03em;
+}
+.corner-link:hover { color: var(--accent-color); }
+nav {
+  background-color: var(--nav-bg); padding: 0.55rem 1rem; text-align: center;
+  border-bottom: 1px solid var(--border-color); font-size: 0.95rem;
+}
+nav a { margin: 0 13px; font-weight: 500; }
+main { max-width: 760px; margin: 0 auto; padding: 2rem 1rem; }
+article { margin-bottom: 2rem; }
+h1, h2, h3 { color: #e9edf5; margin-top: 2rem; }
+code { background: #1f2937; padding: 0.2rem 0.4rem; border-radius: 4px; font-family: monospace; }
+pre { background: #1f2937; padding: 1rem; border-radius: 4px; overflow-x: auto; }
+pre code { background: none; padding: 0; }
+table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+th, td { border: 1px solid var(--border-color); padding: 0.5rem; text-align: left; }
+th { background: var(--header-bg); }
+hr { border: 0; border-top: 1px solid var(--border-color); margin: 2rem 0; }
+footer {
+  text-align: center; padding: 2rem 1rem; font-size: 0.9rem; color: #888;
+  border-top: 1px solid var(--border-color); margin-top: 2rem;
+}
+.article-list-item { margin-bottom: 1.5rem; }
+.article-list-item h2 { margin: 0 0 0.5rem 0; font-size: 1.4rem; }
+.article-list-item p { margin: 0; color: #aaa; }
+.date { font-size: 0.9rem; color: #888; margin-bottom: 0.5rem; display: block; }
+
+/* ProjectStatus Card */
+.project-card {
+  background: var(--nav-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.project-card-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+.project-card-header h2 {
+  margin: 0;
+}
+.version-pill {
+  background: rgba(77, 184, 255, 0.1);
+  color: var(--accent-color);
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+  font-family: monospace;
+  font-size: 0.9rem;
+}
+.status-pill {
+  font-size: 0.85rem;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.project-meta {
+  font-size: 0.9rem;
+  color: #9fb6cc;
+  margin-bottom: 1rem;
+}
+.project-meta div {
+  margin-bottom: 0.3rem;
+}
+.project-links {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+}
+.project-highlights {
+  margin-bottom: 1.5rem;
+  padding-left: 1.2rem;
+}
+.project-highlights li {
+  margin-bottom: 0.3rem;
+}
+.release-timeline h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+.release-item {
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+}
+.release-item strong {
+  color: #e9edf5;
+}
+.release-item span.date {
+  display: inline;
+  margin-left: 0.5rem;
+}
+.release-summary {
+  display: block;
+  color: #aaa;
+  margin-top: 0.2rem;
+}

@@ -7,3 +7,8 @@ __pycache__/
 *.pem
 dist/
 .cache/
+
+# Unpublished internal research and drafts. This repo is PUBLIC.
+# Never commit these.
+notes/
+drafts/
