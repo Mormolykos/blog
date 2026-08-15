@@ -9,8 +9,30 @@ export function buildHead(path: string): string {
   let ogImage = '';
 
   if (path === '/articles/') {
+    // This page used to fall through to the site-wide description and to the
+    // Blog JSON-LD below -- which carries @id "<base>#blog". Two URLs then
+    // declared themselves to be the same entity, with identical meta
+    // descriptions: a duplicate-content signal on a site whose entire purpose is
+    // being read and cited by crawlers. It is a CollectionPage about the blog,
+    // which is what it actually is.
     title = 'All Articles - ' + site.site.name;
+    description = `The complete archive of ${site.articles.length} engineering articles on ${site.site.name} — what was built, what broke, and what the numbers actually showed.`;
     canonical = site.site.base_url + 'articles/';
+    jsonLd = `
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "@id": "${site.site.base_url}articles/#archive",
+      "name": "All Articles - ${site.site.name.replace(/"/g, '\\"')}",
+      "url": "${site.site.base_url}articles/",
+      "description": "${description.replace(/"/g, '\\"')}",
+      "isPartOf": { "@id": "${site.site.base_url}#blog" },
+      "author": { "@type": "Person", "@id": "${site.site.author.person_id}", "name": "${site.site.author.name}" },
+      "publisher": { "@id": "${site.site.org_id}" },
+      "hasPart": [
+${site.articles.map(a => `        { "@type": "BlogPosting", "@id": "${a.canonical}#article", "headline": "${a.title.replace(/"/g, '\\"')}", "url": "${a.canonical}", "datePublished": "${a.date_published}" }`).join(',\n')}
+      ]
+    }`;
   } else if (site.articles.some(a => a.path === path)) {
     // Resolved from the data, not a hardcoded path list. The previous version
     // named its two articles inline, so a third article would have silently
