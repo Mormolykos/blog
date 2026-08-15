@@ -3,19 +3,7 @@ import path from 'path';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { Layout } from '../src/components/Layout';
-import { Home } from '../src/pages/Home';
-import { Articles } from '../src/pages/Articles';
-import { TtsproofArticle } from '../src/pages/articles/TtsproofArticle';
-import { TrainproofArticle } from '../src/pages/articles/TrainproofArticle';
-import { AiAuthorshipArticle } from '../src/pages/articles/AiAuthorshipArticle';
-import { CorruptedDataArticle } from '../src/pages/articles/CorruptedDataArticle';
-import { EosCollisionArticle } from '../src/pages/articles/EosCollisionArticle';
-import { PhotopeaArticle } from '../src/pages/articles/PhotopeaArticle';
-import { CanonStateArticle } from '../src/pages/articles/CanonStateArticle';
-import { GreybodyArticle } from '../src/pages/articles/GreybodyArticle';
-import { FemKirschArticle } from '../src/pages/articles/FemKirschArticle';
-import { SpeakerDriftArticle } from '../src/pages/articles/SpeakerDriftArticle';
-import { ObservationTimeArticle } from '../src/pages/articles/ObservationTimeArticle';
+import { routes } from '../src/routes';
 import { buildHead } from '../src/head/head';
 import { site } from '../src/data/site';
 
@@ -40,7 +28,7 @@ function renderPage(route: string, Component: React.FC) {
     </Layout>
   );
   const bodyHtml = renderToStaticMarkup(element);
-  
+
   const html = `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,28 +48,27 @@ ${bodyHtml}
   console.log(`Rendered ${filepath}`);
 }
 
-renderPage('/', Home);
-renderPage('/articles/', Articles);
-renderPage('/ttsproof/', TtsproofArticle);
-renderPage('/trainproof/', TrainproofArticle);
-renderPage('/ai-authorship/', AiAuthorshipArticle);
-renderPage('/corrupted-training-data/', CorruptedDataArticle);
-renderPage('/eos-collision/', EosCollisionArticle);
-renderPage('/photopea-scripting/', PhotopeaArticle);
-renderPage('/canon-state/', CanonStateArticle);
-renderPage('/greybody/', GreybodyArticle);
-renderPage('/speaker-drift/', SpeakerDriftArticle);
-renderPage('/fem-kirsch/', FemKirschArticle);
-renderPage('/observation-time/', ObservationTimeArticle);
+// Every route in the shared table gets a page. Adding an article means adding it
+// to src/routes.ts and to site-data.json -- nothing here changes.
+for (const [route, Component] of Object.entries(routes)) {
+  renderPage(route, Component);
+}
 
-// Every article in site-data must have a page registered above, or it is listed on
-// Home/Articles and links to a 404. Catch that here rather than on the live site.
-const registered = new Set(['/ttsproof/', '/trainproof/', '/ai-authorship/', '/corrupted-training-data/',
-  '/eos-collision/', '/photopea-scripting/', '/canon-state/', '/greybody/',
-  '/speaker-drift/', '/fem-kirsch/', '/observation-time/']);
-const unrendered = site.articles.filter(a => !registered.has(a.path)).map(a => a.path);
+// Every article in site-data must have a route, or it is listed on Home/Articles
+// and links to a 404. The guard reads the SAME table the pages were rendered from,
+// so it cannot pass while the page is missing.
+const unrendered = site.articles.filter(a => !(a.path in routes)).map(a => a.path);
 if (unrendered.length) {
-  throw new Error(`site-data lists articles with no renderPage() call: ${unrendered.join(', ')}`);
+  throw new Error(`site-data lists articles with no route in src/routes.ts: ${unrendered.join(', ')}`);
+}
+
+// And the reverse: a route that no longer has a site-data entry is a page nothing
+// links to. Not fatal -- an article can be deliberately unlisted -- but it is
+// always worth seeing, because the usual cause is a typo'd path in site-data.
+const unlisted = Object.keys(routes).filter(
+  r => r !== '/' && r !== '/articles/' && !site.articles.some(a => a.path === r));
+if (unlisted.length) {
+  console.warn(`  NOTE: routed but not listed in site-data: ${unlisted.join(', ')}`);
 }
 
 // Sitemap + llms.txt are generated from the data, so new articles need no edits here.
