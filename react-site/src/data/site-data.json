@@ -274,12 +274,12 @@
   "articles": [
     {
       "id": "observation-time",
-      "title": "My Tracker Threw Away One Good Measurement in Six. It Was Recording When the Data Arrived.",
-      "dek": "A live aircraft tracker that looked healthy was rejecting 16% of its own valid observations. The feed had been reporting how stale each measurement was the entire time, in a field I decoded and then ignored. The controlled A/B, the fix that would have made it worse, and the two unrelated failures it exposed.",
+      "title": "Aether: Real-Time Tracking and Collision Screening in Rust",
+      "dek": "A two-thousand-line component that turns a live, unreliable sensor feed into a collision picture in under a millisecond per cycle, built to be embedded inside a larger system. What it is, what a system like it is used for, why the problem is hard, and one measured investigation: a fault that caused 16.1% of valid observations to be rejected, cut to 1.9% by an architectural change.",
       "path": "/observation-time/",
       "canonical": "https://ai.bedvibe.studio/observation-time/",
       "date_published": "2026-08-14",
-      "date_modified": "2026-08-14",
+      "date_modified": "2026-08-15",
       "display_date": "August 2026",
       "project_id": null,
       "og_type": "article",
