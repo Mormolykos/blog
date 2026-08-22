@@ -269,6 +269,33 @@
           "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.1.0"
         }
       ]
+    },
+    {
+      "id": "notchecked",
+      "name": "notchecked",
+      "tagline": "Coverage accounting for validators: what was checked, what could not be checked, and what was never in scope.",
+      "description": "A schema and accounting layer for tools that check things. Eight terminal coverage states, each carrying who owns the gap and whether it can ever change. Coverage and verdict are enforced as orthogonal axes, so a skipped check can never be reported as a passed one. Reasons come from a vocabulary declared up front rather than free text, counts are derived from the records at read time so a total cannot drift from the rows it summarises, and incomplete coverage never exits zero.",
+      "status": "active",
+      "current_version": null,
+      "current_release_date": null,
+      "install": null,
+      "repo": "https://github.com/Mormolykos/notchecked",
+      "pypi": null,
+      "license": "MIT",
+      "doi": null,
+      "doi_url": null,
+      "tests_passing": 29,
+      "release_count": 0,
+      "article_id": "notchecked",
+      "highlights": [
+        "The same defect found in four unrelated systems - an ML training linter, a directory walk, a compliance report and a retrieval evaluation harness - all rendering absence of evidence as a positive result",
+        "Eight terminal states, and a test enforcing that no two share both an owner and a remediation",
+        "Coverage and verdict as orthogonal axes: a gap cannot carry a verdict, a checked record cannot carry a skip reason",
+        "Two denominators, and only the one computed over mechanically checkable targets is quotable",
+        "Hardened by two attacks on its own design before release: five API holes, then 24 realistic cases of which five fit no state at all",
+        "Zero dependencies, standard library only, 29 tests, MIT"
+      ],
+      "releases": []
     }
   ],
   "articles": [
@@ -414,6 +441,32 @@
       "date_modified": "2026-08-09",
       "display_date": "August 2026",
       "project_id": "trainproof",
+      "og_type": "article",
+      "citation": null
+    },
+    {
+      "id": "compiled-chronology",
+      "title": "The Size Where a Model Stops Saying \"I Don’t Know\"",
+      "dek": "Five local models, one fact their source text does not contain. Scaling recovered none of it. Compiling the fact worked — above a threshold, with a regression in the middle where the model stopped abstaining and started agreeing.",
+      "path": "/compiled-chronology/",
+      "canonical": "https://ai.bedvibe.studio/compiled-chronology/",
+      "date_published": "2026-08-21",
+      "date_modified": "2026-08-21",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": null
+    },
+    {
+      "id": "notchecked",
+      "title": "The Same Bug, Four Times, Three of Them Mine",
+      "dek": "A validator that reports a verdict without reporting its coverage is asserting something it did not measure. I found that in four systems before I admitted it was one problem.",
+      "path": "/notchecked/",
+      "canonical": "https://ai.bedvibe.studio/notchecked/",
+      "date_published": "2026-08-22",
+      "date_modified": "2026-08-22",
+      "display_date": "August 2026",
+      "project_id": "notchecked",
       "og_type": "article",
       "citation": null
     }

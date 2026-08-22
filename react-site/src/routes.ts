@@ -12,6 +12,8 @@ import { GreybodyArticle } from './pages/articles/GreybodyArticle';
 import { SpeakerDriftArticle } from './pages/articles/SpeakerDriftArticle';
 import { FemKirschArticle } from './pages/articles/FemKirschArticle';
 import { ObservationTimeArticle } from './pages/articles/ObservationTimeArticle';
+import { CompiledChronologyArticle } from './pages/articles/CompiledChronologyArticle';
+import { NotcheckedArticle } from './pages/articles/NotcheckedArticle';
 
 // THE route table. One list, two consumers: scripts/prerender.tsx (production
 // static build) and src/main.tsx (dev preview).
@@ -37,4 +39,6 @@ export const routes: Record<string, React.FC> = {
   '/speaker-drift/': SpeakerDriftArticle,
   '/fem-kirsch/': FemKirschArticle,
   '/observation-time/': ObservationTimeArticle,
+  '/compiled-chronology/': CompiledChronologyArticle,
+  '/notchecked/': NotcheckedArticle,
 };
