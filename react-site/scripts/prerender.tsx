@@ -91,7 +91,7 @@ ${site.site.tagline}
 ${site.articles.map(a => `- [${a.title}](${a.canonical}) — ${a.dek}`).join('\n')}
 
 ## Projects
-${site.projects.map(p => `- ${p.name} v${p.current_version}: ${p.tagline} (Repo: ${p.repo})`).join('\n')}
+${site.projects.map(p => `- ${p.name}${p.current_version ? ` v${p.current_version}` : ''}: ${p.tagline} (Repo: ${p.repo})`).join('\n')}
 `;
 fs.writeFileSync(path.join(distDir, 'llms.txt'), llms, 'utf8');
 

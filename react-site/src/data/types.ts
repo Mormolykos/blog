@@ -21,9 +21,12 @@ export interface Release { version: string; date: string; title: string; summary
 
 export interface Project {
   id: string; name: string; tagline: string; description: string;
-  status: string; current_version: string; current_release_date?: string;
-  install: string; repo: string; pypi: string; license: string;
-  doi?: string; doi_url?: string; built_on?: string;
+  // A project that has not been released yet has no version, no install line and
+  // no PyPI page. These are null, not empty strings, and the renderer omits the
+  // element rather than printing "v" or an <a> with no href.
+  status: string; current_version: string | null; current_release_date?: string | null;
+  install: string | null; repo: string; pypi: string | null; license: string;
+  doi?: string | null; doi_url?: string | null; built_on?: string;
   tests_passing: number; tests_as_of_version?: string; release_count: number;
   article_id: string; highlights: string[]; releases: Release[];
   _note?: string; // internal only — never render

@@ -120,17 +120,17 @@
       "tagline": "A deterministic linter for ML training runs.",
       "description": "Deterministic PASS/WARN/FAIL verdicts across a training run's whole life — before it starts (dataset, tokenizer, and an environment preflight that catches a stack which will not import, an unreadable checkpoint, or too little system RAM), a live guardian during training, a post-run autopsy after, and a baseline compare. Reads five log formats including TensorBoard event files, decoded from the wire format with no torch, tensorflow or tensorboard installed. No ML judging ML: every verdict is a rule that fires or doesn't, every finding cites its exact numbers, and a check that could not run is reported as NOT-CHECKED rather than as a pass.",
       "status": "active",
-      "current_version": "0.18.0",
-      "current_release_date": "2026-08-09",
+      "current_version": "0.18.1",
+      "current_release_date": "2026-08-22",
       "_note": "Mechanical fields (version, date, release_count, tests_passing) are written by gen_site_data.py from GitHub Releases, PyPI and pytest --collect-only; release titles and summaries are authored by hand because that producer refuses to invent prose. GitHub Releases and PyPI agree at 12 releases. v0.12.0 uploaded to PyPI 2026-07-31. Verified 2026-07-31.",
       "install": "pip install trainproof",
       "repo": "https://github.com/Mormolykos/trainproof",
       "pypi": "https://pypi.org/project/trainproof/",
       "license": "MIT",
       "built_on": "ttsproof",
-      "tests_passing": 258,
-      "tests_as_of_version": "0.18.0",
-      "release_count": 18,
+      "tests_passing": 274,
+      "tests_as_of_version": "0.18.1",
+      "release_count": 19,
       "article_id": "trainproof",
       "highlights": [
         "Objective checks: catches a cross-entropy ignore_index that is also a valid output class - a collision that silently deletes a target from the loss while leaving the loss curve indistinguishable from a correct run (0.0035 vs 0.0034)",
@@ -145,6 +145,13 @@
         "Reads five log formats including TensorBoard event files, decoded from the wire format with no tensorflow, tensorboard, protobuf, torch or numpy — validated byte-exact against tensorboard's own EventAccumulator, and the rules are exercised on real runs from three frameworks: HuggingFace, Coqui XTTS and PyTorch Lightning"
       ],
       "releases": [
+        {
+          "version": "0.18.1",
+          "date": "2026-08-22",
+          "title": "0.18.1 — the core no longer drags in an audio stack",
+          "summary": "No rule, threshold or verdict changed. numpy, soundfile and ttsproof were hard runtime dependencies used by exactly one module — the speech dataset check — which cli.py imported at module scope. So `pip install trainproof` pulled an audio stack, and `trainproof epoch` on a text log would not start without libsndfile, the C library behind soundfile. For a tool whose tfevents reader is written from the wire format specifically to avoid installing TensorFlow, that was the wrong shape. `dependencies` is now empty; the three moved to a `trainproof[speech]` extra, the speech check resolves lazily through a module __getattr__, and cli.py imports it inside the `data` subcommand. A core install that calls a speech check without the extra gets a legible error naming `pip install 'trainproof[speech]'`, not a bare ImportError. Sixteen new tests block all three packages at the import system in a fresh interpreter and assert that twelve core modules and the `epoch` CLI still work, so a stray top-level import cannot quietly reintroduce the coupling. 258 -> 274 tests.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.18.1"
+        },
         {
           "version": "0.18.0",
           "date": "2026-08-09",
