@@ -1,4 +1,27 @@
 import React from 'react';
+import { site } from '../../data/site';
+
+// The libraries this page names are read from site-data.json rather than
+// typed here. `gen_site_data.py` fills that file from PyPI and GitHub, so a
+// new release or a new library reaches this sentence without anyone editing
+// it -- the failure that left it saying "three" on the day there were four.
+const PUBLISHED = site.projects.filter(p => p.pypi);
+const COUNT_WORDS: Record<number, string> = {
+  1: 'The one', 2: 'Both', 3: 'All three', 4: 'All four',
+  5: 'All five', 6: 'All six',
+};
+const LIBRARY_COUNT_WORD = COUNT_WORDS[PUBLISHED.length] ?? `All ${PUBLISHED.length}`;
+
+const LibraryList: React.FC = () => (
+  <>
+    {PUBLISHED.map((p, i) => (
+      <React.Fragment key={p.id}>
+        <a href={p.pypi!}>{p.name}</a>
+        {i < PUBLISHED.length - 2 ? ', ' : i === PUBLISHED.length - 2 ? ' and ' : '. '}
+      </React.Fragment>
+    ))}
+  </>
+);
 
 export const WorkArticle: React.FC = () => {
   return (
@@ -92,12 +115,11 @@ export const WorkArticle: React.FC = () => {
       <p>
         I develop with AI coding agents and treat their output as untrusted until it
         clears a gate: automated evaluation suites, ASR-validated model QA, static
-        checks. All four of my published libraries <em>are</em> those gates —{' '}
-        <a href="/ttsproof/">ttsproof</a> for text-to-speech failure modes,{' '}
-        <a href="/trainproof/">trainproof</a> for training runs,{' '}
-        <a href="https://pypi.org/project/spkproof/">spkproof</a> for
-        speaker-verification measurement error, and{' '}
-        <a href="/notchecked/">notchecked</a> for coverage accounting. That method is
+        checks. {/* Derived from site-data.json, the one place a library is
+        declared. This sentence used to name three libraries by hand and went
+        stale the day a fourth was published. */}
+        {LIBRARY_COUNT_WORD} of my published libraries <em>are</em> those gates —{' '}
+        <LibraryList /> That method is
         why a LoRA collapse and a live retrieval regression were caught before
         release rather than after.
       </p>

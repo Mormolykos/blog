@@ -72,7 +72,7 @@
       "license": "MIT",
       "doi": "10.5281/zenodo.20757553",
       "doi_url": "https://doi.org/10.5281/zenodo.20757553",
-      "tests_passing": 42,
+      "tests_passing": 74,
       "release_count": 4,
       "article_id": "ttsproof",
       "highlights": [
@@ -128,7 +128,7 @@
       "pypi": "https://pypi.org/project/trainproof/",
       "license": "MIT",
       "built_on": "ttsproof",
-      "tests_passing": 274,
+      "tests_passing": 313,
       "tests_as_of_version": "0.18.1",
       "release_count": 19,
       "article_id": "trainproof",
@@ -283,16 +283,16 @@
       "tagline": "Coverage accounting for validators: what was checked, what could not be checked, and what was never in scope.",
       "description": "A schema and accounting layer for tools that check things. Eight terminal coverage states, each carrying who owns the gap and whether it can ever change. Coverage and verdict are enforced as orthogonal axes, so a skipped check can never be reported as a passed one. Reasons come from a vocabulary declared up front rather than free text, counts are derived from the records at read time so a total cannot drift from the rows it summarises, and incomplete coverage never exits zero.",
       "status": "active",
-      "current_version": null,
-      "current_release_date": null,
-      "install": null,
+      "current_version": "0.2.0",
+      "current_release_date": "2026-08-25",
+      "install": "pip install notchecked",
       "repo": "https://github.com/Mormolykos/notchecked",
-      "pypi": null,
+      "pypi": "https://pypi.org/project/notchecked/",
       "license": "MIT",
       "doi": null,
       "doi_url": null,
-      "tests_passing": 29,
-      "release_count": 0,
+      "tests_passing": 119,
+      "release_count": 1,
       "article_id": "notchecked",
       "highlights": [
         "The same defect found in four unrelated systems - an ML training linter, a directory walk, a compliance report and a retrieval evaluation harness - all rendering absence of evidence as a positive result",
@@ -302,7 +302,49 @@
         "Hardened by two attacks on its own design before release: five API holes, then 24 realistic cases of which five fit no state at all",
         "Zero dependencies, standard library only, 29 tests, MIT"
       ],
-      "releases": []
+      "releases": [
+        {
+          "version": "0.2.0",
+          "date": "2026-08-25",
+          "title": "v0.2.0",
+          "url": "https://github.com/Mormolykos/notchecked/releases/tag/v0.2.0"
+        }
+      ],
+      "tests_as_of_version": "0.2.0"
+    },
+    {
+      "id": "spkproof",
+      "name": "spkproof",
+      "tagline": "Deterministic checks for speaker-verification studies.",
+      "description": "Pitch trackers fail on rough phonation, and they fail in one direction: octave errors push an estimate up and essentially never down. Pooled with modal speech, that is not noise but differential measurement error, correlated with condition and loaded onto one side of any directional comparison. Four exact tests catch it in a table a study already has. It measures false rejection, not attacks, and it reports problems in the measurement rather than verdicts about any speaker.",
+      "status": "active",
+      "current_version": "0.1.0",
+      "current_release_date": "2026-08-25",
+      "install": "pip install spkproof",
+      "repo": "https://github.com/Mormolykos/spkproof",
+      "pypi": "https://pypi.org/project/spkproof/",
+      "license": "MIT",
+      "doi": "10.5281/zenodo.21921958",
+      "doi_url": "https://doi.org/10.5281/zenodo.21921958",
+      "tests_passing": 46,
+      "release_count": 1,
+      "article_id": "speaker-drift",
+      "highlights": [
+        "Four exact tests, no approximations: range, octave-harmonic fingerprint, confinement to a condition (Fisher exact), and one-way failures that do not cancel",
+        "It found the contamination that made its own author withdraw a published direction: correcting it two equally defensible ways gave opposite answers",
+        "Reads a per-utterance table the study already has - no audio, no model refit, no dependencies",
+        "A regression test runs it against the published paper's own measurement table and asserts the published numbers, so a change to the library that alters them fails the build",
+        "Reports measurement problems, never a judgement about a person - stated in the README because the misuse is obvious and easy"
+      ],
+      "releases": [
+        {
+          "version": "0.1.0",
+          "date": "2026-08-25",
+          "title": "v0.1.0",
+          "url": "https://github.com/Mormolykos/spkproof/releases/tag/v0.1.0"
+        }
+      ],
+      "tests_as_of_version": "0.1.0"
     }
   ],
   "articles": [
