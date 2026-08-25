@@ -307,6 +307,19 @@
   ],
   "articles": [
     {
+      "id": "success-rate",
+      "title": "A Hundred Per Cent Success Rate and One Usable Answer",
+      "dek": "I removed the backpressure from my own model gateway to see what would break. Thirty-two callers, thirty-two HTTP 200s, and thirty-one arrived after the caller had given up. Then I made a backend go slow instead of dying, and watched failover log eight successes without ever calling the healthy backend. Both faults produced a clean log.",
+      "path": "/success-rate/",
+      "canonical": "https://ai.bedvibe.studio/success-rate/",
+      "date_published": "2026-08-24",
+      "date_modified": "2026-08-24",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": null
+    },
+    {
       "id": "observation-time",
       "title": "Aether: Real-Time Tracking and Collision Screening in Rust",
       "dek": "A two-thousand-line component that turns a live, unreliable sensor feed into a collision picture in under a millisecond per cycle, built to be embedded inside a larger system. What it is, what a system like it is used for, why the problem is hard, and one measured investigation: a fault that caused 16.1% of valid observations to be rejected, cut to 1.9% by an architectural change.",
