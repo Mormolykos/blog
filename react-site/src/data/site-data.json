@@ -307,6 +307,19 @@
   ],
   "articles": [
     {
+      "id": "retrieval-coverage",
+      "title": "My Agent Answers From 0.6% of Its Corpus and Reports It Like a Full Read",
+      "dek": "My portfolio agent holds 1,003 chunks and answers from six of them — 0.598% — and the answer reads identically to one built from reading all 1,003. That is fine for “he mentions Rust” and false for “he never mentions Rust”, from the same six chunks. Faithfulness cannot catch it: an answer perfectly grounded in what was retrieved can still be wrong about what was not. The control is the shape of the claim, not a coverage threshold.",
+      "path": "/retrieval-coverage/",
+      "canonical": "https://ai.bedvibe.studio/retrieval-coverage/",
+      "date_published": "2026-08-25",
+      "date_modified": "2026-08-25",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": null
+    },
+    {
       "id": "work",
       "title": "Panagiotis (Panos) Gkilis - Machine Learning Engineer",
       "dek": "Production ML systems, MLOps, speech and language AI. A 730M-parameter TTS model trained from scratch and served behind a live API, a grounded RAG agent behind a 32-case adversarial gate, an OpenAI-compatible model gateway, MCP tooling, seven Zenodo DOIs and four open-source libraries. Everything deployed, measured, and open to inspection.",

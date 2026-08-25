@@ -104,6 +104,47 @@ export const SuccessRateArticle: React.FC = () => {
 
       <p>What I built instead is the layer above the engine, and that is the part that transfers. Routing, quota, metering, admission, deadlines and failover know nothing about which engine is underneath. The proof is structural rather than rhetorical: the two backends in it speak completely different protocols and each one is a single file.</p>
 
+      <h2>Added after publication: put it on the dashboard, not in the benchmark</h2>
+
+      <p>
+        <strong>eddzsh</strong> replied to this on r/LLMDevs with a better version of the
+        conclusion than the one I wrote:
+      </p>
+
+      <blockquote>
+        <p>
+          Stamp every 200 with whether the waiter was still there. A late success counter next
+          to success rate makes that invisible queue show up on the same dashboard that
+          currently lies to you.
+        </p>
+      </blockquote>
+
+      <p>
+        I had been treating goodput as a <em>benchmark</em> number — something I measured while
+        breaking the gateway on purpose. He put it where it belongs: on the running system, next
+        to the metric it contradicts. So it is implemented. Every metering row now carries{' '}
+        <code>late</code> and <code>late_by_ms</code>, derived from the request deadline that
+        already existed rather than a second clock, because two clocks disagree.
+      </p>
+
+      <p>
+        <strong>And the first version of it was wrong in the way this whole article is
+        about.</strong> I defaulted <code>late</code> to <code>0</code> when no deadline was in
+        force — which asserts that an unmeasured request arrived on time. That is an absent value
+        being read as a good one, committed inside the fix for absent values being read as good
+        ones. It is <code>NULL</code> now, with a test that keeps it there: three states, not
+        two.
+      </p>
+
+      <p>
+        The proof runs against the documented break rather than a contrived fixture. The test
+        flips <code>BASALT_RETRY_BUDGET=per_backend</code> — the fault that made failover log
+        eight successes at three seconds against a 1.5-second deadline — and asserts the row
+        reads <code>status=ok</code>, <code>http_status=200</code> <em>and</em>{' '}
+        <code>late=1</code>. That is the row I could not see when I wrote this: correct in every
+        field but one.
+      </p>
+
       <h2>What I actually take from this</h2>
 
       <p><strong>Success rate is the metric that hides an outage.</strong> Both faults produced a clean log. One produced a perfect log. The number I care about now is how many answers arrived while somebody was still there to read them, and every dashboard I build gets that number next to the success rate, not instead of it.</p>
