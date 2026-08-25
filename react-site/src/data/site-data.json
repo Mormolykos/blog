@@ -74,7 +74,7 @@
       "license": "MIT",
       "doi": "10.5281/zenodo.20757553",
       "doi_url": "https://doi.org/10.5281/zenodo.20757553",
-      "tests_passing": 74,
+      "tests_passing": 42,
       "release_count": 4,
       "article_id": "ttsproof",
       "highlights": [
@@ -130,7 +130,7 @@
       "pypi": "https://pypi.org/project/trainproof/",
       "license": "MIT",
       "built_on": "ttsproof",
-      "tests_passing": 313,
+      "tests_passing": 274,
       "tests_as_of_version": "0.18.1",
       "release_count": 19,
       "article_id": "trainproof",
@@ -293,7 +293,7 @@
       "license": "MIT",
       "doi": null,
       "doi_url": null,
-      "tests_passing": 119,
+      "tests_passing": 112,
       "release_count": 1,
       "article_id": "notchecked",
       "highlights": [
