@@ -55,7 +55,9 @@
         "href": "https://github.com/Mormolykos",
         "external": true
       }
-    ]
+    ],
+    "projects_heading": "Python libraries",
+    "projects_note": "All four are on PyPI, MIT, and installable. They are the measurement tools — not the whole of the work."
   },
   "projects": [
     {

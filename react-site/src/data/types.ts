@@ -12,6 +12,12 @@ export interface SiteData {
     github_url: string;
     corner_link: { label: string; href: string };
     nav: { label: string; href: string; external: boolean }[];
+    // The heading over the project grid, declared here rather than typed into
+    // Home.tsx. It read "Projects" while every entry was a published Python
+    // library, which told a reader these four were the body of work instead of
+    // one specific slice of it.
+    projects_heading: string;
+    projects_note?: string;
   };
   projects: Project[];
   articles: Article[];

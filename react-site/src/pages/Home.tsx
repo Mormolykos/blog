@@ -11,7 +11,19 @@ export const Home: React.FC = () => {
     <>
       <p>{site.site.tagline}</p>
 
-      <h2>Projects</h2>
+      {/* "Projects" was the wrong word, and it cost something: these four are the
+          published Python libraries, and heading them "Projects" told a reader
+          they were the body of work rather than a small, specific slice of it.
+          The label lives in site-data.json with the rest of the facts about them,
+          so it is declared once and not typed into a component. */}
+      <h2>{site.site.projects_heading}</h2>
+      {site.site.projects_note && (
+        <p className="section-note">
+          {site.site.projects_note}{' '}
+          The full record is in the{' '}
+          <a href="https://tts.bedvibe.studio/portfolio/">portfolio</a>.
+        </p>
+      )}
       <div className="project-grid">
         {site.projects.map(p => (
           <ProjectStatus key={p.id} project={p} compact />
