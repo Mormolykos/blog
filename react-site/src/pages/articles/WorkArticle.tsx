@@ -92,9 +92,11 @@ export const WorkArticle: React.FC = () => {
       <p>
         I develop with AI coding agents and treat their output as untrusted until it
         clears a gate: automated evaluation suites, ASR-validated model QA, static
-        checks. Three of my published libraries <em>are</em> those gates —{' '}
+        checks. All four of my published libraries <em>are</em> those gates —{' '}
         <a href="/ttsproof/">ttsproof</a> for text-to-speech failure modes,{' '}
-        <a href="/trainproof/">trainproof</a> for training runs, and{' '}
+        <a href="/trainproof/">trainproof</a> for training runs,{' '}
+        <a href="https://pypi.org/project/spkproof/">spkproof</a> for
+        speaker-verification measurement error, and{' '}
         <a href="/notchecked/">notchecked</a> for coverage accounting. That method is
         why a LoRA collapse and a live retrieval regression were caught before
         release rather than after.
