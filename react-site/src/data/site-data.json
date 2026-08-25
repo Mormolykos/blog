@@ -307,6 +307,19 @@
   ],
   "articles": [
     {
+      "id": "work",
+      "title": "Panagiotis (Panos) Gkilis - Machine Learning Engineer",
+      "dek": "Production ML systems, MLOps, speech and language AI. A 730M-parameter TTS model trained from scratch and served behind a live API, a grounded RAG agent behind a 32-case adversarial gate, an OpenAI-compatible model gateway, MCP tooling, seven Zenodo DOIs and four open-source libraries. Everything deployed, measured, and open to inspection.",
+      "path": "/work/",
+      "canonical": "https://ai.bedvibe.studio/work/",
+      "date_published": "2026-08-25",
+      "date_modified": "2026-08-25",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "profile",
+      "citation": null
+    },
+    {
       "id": "success-rate",
       "title": "A Hundred Per Cent Success Rate and One Usable Answer",
       "dek": "I removed the backpressure from my own model gateway to see what would break. Thirty-two callers, thirty-two HTTP 200s, and thirty-one arrived after the caller had given up. Then I made a backend go slow instead of dying, and watched failover log eight successes without ever calling the healthy backend. Both faults produced a clean log.",

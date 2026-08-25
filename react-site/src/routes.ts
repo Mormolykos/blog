@@ -15,6 +15,7 @@ import { ObservationTimeArticle } from './pages/articles/ObservationTimeArticle'
 import { CompiledChronologyArticle } from './pages/articles/CompiledChronologyArticle';
 import { NotcheckedArticle } from './pages/articles/NotcheckedArticle';
 import { SuccessRateArticle } from './pages/articles/SuccessRateArticle';
+import { WorkArticle } from './pages/articles/WorkArticle';
 
 // THE route table. One list, two consumers: scripts/prerender.tsx (production
 // static build) and src/main.tsx (dev preview).
@@ -43,4 +44,5 @@ export const routes: Record<string, React.FC> = {
   '/compiled-chronology/': CompiledChronologyArticle,
   '/notchecked/': NotcheckedArticle,
   '/success-rate/': SuccessRateArticle,
+  '/work/': WorkArticle,
 };
