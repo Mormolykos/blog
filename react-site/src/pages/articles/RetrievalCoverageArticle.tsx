@@ -8,8 +8,14 @@ export const RetrievalCoverageArticle: React.FC = () => {
       <hr />
 
       <p>
-        My portfolio agent holds 1,003 indexed chunks. When someone asks it a question it
-        retrieves six of them and answers.
+        My portfolio agent held 1,003 indexed chunks when I measured this on 25 August 2026.
+        When someone asks it a question it retrieves six of them and answers.
+      </p>
+
+      <p>
+        The corpus has grown since, which is the ordinary fate of a corpus and the reason the
+        date is here rather than a bare number. Nothing in the argument moves with it: the
+        denominator being larger only widens the gap the piece is about.
       </p>
 
       <p>

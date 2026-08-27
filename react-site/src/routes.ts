@@ -17,6 +17,8 @@ import { NotcheckedArticle } from './pages/articles/NotcheckedArticle';
 import { SuccessRateArticle } from './pages/articles/SuccessRateArticle';
 import { RetrievalCoverageArticle } from './pages/articles/RetrievalCoverageArticle';
 import { WorkArticle } from './pages/articles/WorkArticle';
+import { CrawledNotIndexedArticle } from './pages/articles/CrawledNotIndexedArticle';
+import { NotEnoughInfoArticle } from './pages/articles/NotEnoughInfoArticle';
 
 // THE route table. One list, two consumers: scripts/prerender.tsx (production
 // static build) and src/main.tsx (dev preview).
@@ -47,4 +49,6 @@ export const routes: Record<string, React.FC> = {
   '/success-rate/': SuccessRateArticle,
   '/retrieval-coverage/': RetrievalCoverageArticle,
   '/work/': WorkArticle,
+  '/crawled-not-indexed/': CrawledNotIndexedArticle,
+  '/not-enough-info/': NotEnoughInfoArticle,
 };

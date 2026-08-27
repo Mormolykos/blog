@@ -351,6 +351,19 @@
   ],
   "articles": [
     {
+      "id": "crawled-not-indexed",
+      "title": "Requesting Indexing Did Nothing, and I Have the Control Group",
+      "dek": "One of my hosts had 0 of 38 URLs in Google while four sibling hosts on the same domain, the same IPs and the same certificate indexed normally. The standard advice is to submit the URLs, so I submitted them against a held-out control: treatment 32%, control 33%. Fifteen causes eliminated with measurements, two of them my own hypotheses withdrawn — and then the impressions report showed the pages had been indexed and served all along, and lost. Locus established, mechanism unknown.",
+      "path": "/crawled-not-indexed/",
+      "canonical": "https://ai.bedvibe.studio/crawled-not-indexed/",
+      "date_published": "2026-08-27",
+      "date_modified": "2026-08-27",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": null
+    },
+    {
       "id": "retrieval-coverage",
       "title": "My Agent Answers From 0.6% of Its Corpus and Reports It Like a Full Read",
       "dek": "My portfolio agent holds 1,003 chunks and answers from six of them — 0.598% — and the answer reads identically to one built from reading all 1,003. That is fine for “he mentions Rust” and false for “he never mentions Rust”, from the same six chunks. Faithfulness cannot catch it: an answer perfectly grounded in what was retrieved can still be wrong about what was not. The control is the shape of the claim, not a coverage threshold.",
@@ -557,6 +570,19 @@
       "date_modified": "2026-08-22",
       "display_date": "August 2026",
       "project_id": "notchecked",
+      "og_type": "article",
+      "citation": null
+    },
+    {
+      "id": "not-enough-info",
+      "title": "The Less the Text Said, the More Sure It Got",
+      "dek": "On the standard benchmark for contradictory biomedical claims, 77.1% of the flagged pairs never state what a verdict would need. Seven of eight model runs asserted contradiction MORE often on exactly those pairs, and instructing the model to be conservative raised its refusal rate by forty points without changing the direction at all. 5,824 judgements, all local, no API key, with an audit script that recomputes every number.",
+      "path": "/not-enough-info/",
+      "canonical": "https://ai.bedvibe.studio/not-enough-info/",
+      "date_published": "2026-08-27",
+      "date_modified": "2026-08-27",
+      "display_date": "August 2026",
+      "project_id": null,
       "og_type": "article",
       "citation": null
     }
