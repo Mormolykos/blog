@@ -108,6 +108,30 @@ export const NotEnoughInfoArticle: React.FC = () => {
 
       <p>So the answer to "you just prompted it badly" is: a better prompt raises refusal by forty points and leaves the direction untouched, or worse.</p>
 
+      <h2>Where the added refusal landed</h2>
+
+      <p>A reader asked the right follow-up question: did the forty-point jump improve the model's ability to separate eligible pairs from ineligible ones, or did it only move the operating point? Applying the same split to the refusals answers it. Here correct behaviour is a <em>positive</em> difference — refuse <strong>more</strong> where the conditions are missing.</p>
+
+      <table>
+        <thead>
+          <tr><th>Run</th><th>NOT_ENOUGH_INFO when stated</th><th>when missing</th><th>difference</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>14b · original</td><td>24.6%</td><td>29.6%</td><td>+5.0 pp</td></tr>
+          <tr><td>14b · caution</td><td>80.8%</td><td>67.2%</td><td><strong>−13.6 pp</strong> (p=0.001)</td></tr>
+          <tr><td>14b · strict evidence</td><td>58.7%</td><td>49.0%</td><td><strong>−9.7 pp</strong> (p=0.028)</td></tr>
+          <tr><td>14b · conservative</td><td>31.7%</td><td>33.7%</td><td>+2.0 pp</td></tr>
+          <tr><td>8b · original</td><td>20.4%</td><td>19.4%</td><td>−0.9 pp</td></tr>
+          <tr><td>8b · caution</td><td>85.0%</td><td>86.6%</td><td>+1.6 pp</td></tr>
+          <tr><td>8b · strict evidence</td><td>69.5%</td><td>66.5%</td><td>−3.0 pp</td></tr>
+          <tr><td>8b · conservative</td><td>82.6%</td><td>76.6%</td><td>−6.0 pp</td></tr>
+        </tbody>
+      </table>
+
+      <p>On the 14B it is neither a uniform shift nor an improvement. Under the cautious prompt the well-specified pairs gain 56 points of refusal, 24.6% to 80.8%, while the underspecified pairs gain 38, 29.6% to 67.2%. The two prompts that raise refusal most are the two that refuse <strong>significantly more often on the pairs that state their conditions</strong> — the pairs least in need of it. A threshold shift is monotone: it preserves the ranking between the two groups. This reverses it, so the change is not one a threshold could have bought.</p>
+
+      <p><strong>What this is not.</strong> Five of the eight runs carry the wrong sign and I am not offering that as a result — no sign test is claimed here and it would not pass one. Only the two 14B runs are individually significant. Above 80% refusal the rates compress against a ceiling, which is where 8b · caution sits. The stated group is 167 pairs against 561. And <em>discrimination</em> here means separating pairs that state their conditions from pairs that do not — not separating true contradictions from false ones, for which this corpus supplies no ground truth.</p>
+
       <h2>A guess at why, which I have not tested</h2>
 
       <p>When the conditions are stated, a model can see that they differ — "Korean women" against "Mexican Mestizo population" — and it refuses. When the conditions are absent there is nothing visible to differ, so two bare opposing claims read as a clean conflict.</p>
