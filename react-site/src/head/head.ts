@@ -79,10 +79,16 @@ ${site.articles.map(a => `        { "@type": "BlogPosting", "@id": "${a.canonica
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>${title}</title>
   <meta name="description" content="${description.replace(/"/g, '&quot;')}">
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1">
   <link rel="canonical" href="${canonical}">
+  <meta property="og:site_name" content="${site.site.name.replace(/"/g, '&quot;')}">
+  <meta property="og:url" content="${canonical}">
   <meta property="og:title" content="${title.replace(/"/g, '&quot;')}">
   <meta property="og:description" content="${description.replace(/"/g, '&quot;')}">
   <meta property="og:type" content="${ogType}">${ogImage ? `\n  <meta property="og:image" content="${ogImage}">` : ''}
+  <meta name="twitter:card" content="${ogImage ? 'summary_large_image' : 'summary'}">
+  <meta name="twitter:title" content="${title.replace(/"/g, '&quot;')}">
+  <meta name="twitter:description" content="${description.replace(/"/g, '&quot;')}">${ogImage ? `\n  <meta name="twitter:image" content="${ogImage}">` : ''}
   <link rel="icon" type="image/png" href="/BVfavicom.png">
   <link rel="stylesheet" href="/style.css">
   <script type="application/ld+json">${jsonLd}</script>

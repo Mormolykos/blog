@@ -351,6 +351,19 @@
   ],
   "articles": [
     {
+      "id": "broken-instruments",
+      "title": "Two of My Instruments Were Wrong, in Opposite Directions",
+      "dek": "I audited 38 live pages and fixed some ordinary defects. The two things worth writing down both came from my own tooling being broken. One script reported three pages I had just fixed as still broken, because it did not recognise a relative link. One date parser had thrown an exception on every crawl-statistics read since it was written, so the report that answers \"is the crawler arriving at all\" had never once returned a number. Repairing it showed one search engine crawling this host 15–36 pages a day and holding 34, while the other holds none. Baseline recorded, prediction made, re-measure dated.",
+      "path": "/broken-instruments/",
+      "canonical": "https://ai.bedvibe.studio/broken-instruments/",
+      "date_published": "2026-08-28",
+      "date_modified": "2026-08-28",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": null
+    },
+    {
       "id": "crawled-not-indexed",
       "title": "Requesting Indexing Did Nothing, and I Have the Control Group",
       "dek": "One of my hosts had 0 of 38 URLs in Google while four sibling hosts on the same domain, the same IPs and the same certificate indexed normally. The standard advice is to submit the URLs, so I submitted them against a held-out control: treatment 32%, control 33%. Fifteen causes eliminated with measurements, two of them my own hypotheses withdrawn — and then the impressions report showed the pages had been indexed and served all along, and lost. Locus established, mechanism unknown.",
