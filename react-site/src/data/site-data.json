@@ -41,6 +41,11 @@
         "external": false
       },
       {
+        "label": "Work",
+        "href": "/work/",
+        "external": false
+      },
+      {
         "label": "Articles",
         "href": "/articles/",
         "external": false
@@ -350,6 +355,19 @@
     }
   ],
   "articles": [
+    {
+      "id": "structure-not-scale",
+      "title": "My Headline Was +32 Points. Then I Audited My Own Scorer.",
+      "dek": "Thirty-eight questions ask whether one event precedes another when the two are narrated in different documents and share no character, place or causal link. No passage states either relation. Given the passages, every model scored 0 of 38 and refused almost every time — correctly. Given the identical facts as a structured chronology, an 8B model scored 28 of 38, matching a 14B model given prose. Then I audited the scorer that produced that and my headline lost half its size: +32 points became +15.8. The equivalence survived; the gap did not. Corrected in place, not retracted.",
+      "path": "/structure-not-scale/",
+      "canonical": "https://ai.bedvibe.studio/structure-not-scale/",
+      "date_published": "2026-08-30",
+      "date_modified": "2026-08-30",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": "https://doi.org/10.5281/zenodo.22169643"
+    },
     {
       "id": "broken-instruments",
       "title": "Two of My Instruments Were Wrong, in Opposite Directions",

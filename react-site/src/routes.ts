@@ -20,6 +20,7 @@ import { WorkArticle } from './pages/articles/WorkArticle';
 import { CrawledNotIndexedArticle } from './pages/articles/CrawledNotIndexedArticle';
 import { NotEnoughInfoArticle } from './pages/articles/NotEnoughInfoArticle';
 import { BrokenInstrumentsArticle } from './pages/articles/BrokenInstrumentsArticle';
+import { StructureNotScaleArticle } from './pages/articles/StructureNotScaleArticle';
 
 // THE route table. One list, two consumers: scripts/prerender.tsx (production
 // static build) and src/main.tsx (dev preview).
@@ -53,4 +54,5 @@ export const routes: Record<string, React.FC> = {
   '/crawled-not-indexed/': CrawledNotIndexedArticle,
   '/broken-instruments/': BrokenInstrumentsArticle,
   '/not-enough-info/': NotEnoughInfoArticle,
+  '/structure-not-scale/': StructureNotScaleArticle,
 };

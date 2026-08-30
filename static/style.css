@@ -64,3 +64,69 @@ footer {
 .article-list-item h2 { margin: 0 0 0.5rem 0; font-size: 1.4rem; }
 .article-list-item p { margin: 0; color: #aaa; }
 .date { font-size: 0.9rem; color: #888; margin-bottom: 0.5rem; display: block; }
+/* --- Homepage identity block ------------------------------------------- */
+.intro {
+  display: flex; gap: 1.4rem; align-items: flex-start;
+  padding: 1.6rem 0 1.8rem; border-bottom: 1px solid var(--border-color);
+}
+.intro-portrait {
+  width: 120px; height: 120px; border-radius: 50%; object-fit: cover;
+  border: 2px solid var(--accent-color); flex-shrink: 0;
+  box-shadow: 0 0 26px rgba(77, 184, 255, 0.28);
+}
+.intro-body { min-width: 0; }
+.intro-name {
+  margin: 0 0 0.2rem; font-size: 1.75rem; line-height: 1.2;
+  font-family: Georgia, "Palatino Linotype", serif; color: #e9edf5;
+}
+.intro-role {
+  margin: 0 0 0.9rem; font-size: 0.92rem; color: #9fb6cc;
+  letter-spacing: 0.02em; text-transform: uppercase;
+}
+.intro-lead { margin: 0 0 0.8rem; font-size: 1.02rem; }
+.intro-links {
+  display: flex; flex-wrap: wrap; gap: 0.5rem 1.1rem;
+  margin: 1rem 0 0; font-size: 0.93rem;
+}
+.intro-links .cta {
+  font-weight: 600; padding: 0.35rem 0.85rem; border-radius: 6px;
+  background: var(--accent-color); color: #08121f;
+}
+.intro-links .cta:hover { background: #7fccff; text-decoration: none; }
+@media (max-width: 620px) {
+  .intro { flex-direction: column; align-items: center; text-align: center; }
+  .intro-links { justify-content: center; }
+}
+
+/* --- Numbers strip ------------------------------------------------------ */
+.facts {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem; margin: 1.6rem 0 0.5rem;
+}
+.fact {
+  background: var(--header-bg); border: 1px solid var(--border-color);
+  border-radius: 8px; padding: 0.9rem 1rem; text-align: center;
+}
+.fact b { display: block; font-size: 1.7rem; color: var(--accent-color); line-height: 1.1; }
+.fact span { display: block; margin-top: 0.3rem; font-size: 0.82rem; color: #9fb6cc; }
+
+/* --- The two long arcs -------------------------------------------------- */
+.arcs {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.2rem; margin: 1.2rem 0 0.5rem;
+}
+.arc {
+  background: var(--header-bg); border: 1px solid var(--border-color);
+  border-left: 3px solid var(--accent-color);
+  border-radius: 8px; padding: 1.1rem 1.2rem;
+}
+.arc h3 { margin: 0 0 0.5rem; font-size: 1.08rem; }
+.arc p { margin: 0; font-size: 0.95rem; color: #b9c4d2; }
+
+/* --- Previously used in markup but never defined ------------------------ */
+.section-note { color: #9fb6cc; font-size: 0.95rem; }
+.project-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem; margin: 1rem 0;
+}
+.archive-link { margin-top: 1.5rem; font-weight: 500; }

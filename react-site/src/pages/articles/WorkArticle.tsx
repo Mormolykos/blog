@@ -85,7 +85,7 @@ export const WorkArticle: React.FC = () => {
       <p>
         The full record of what I have built — <strong>38 projects</strong>, each with
         the architecture, the measurements and what went wrong — is on my portfolio.
-        It covers a 730M-parameter speech model trained from scratch, six Model
+        It covers a 730M-parameter speech model trained from scratch, eight Model
         Context Protocol servers, a model gateway with admission control and
         deadline-aware failover, a real-time aerospace telemetry engine in Rust,
         custom voice-activity detection, production auth and billing, and a card
@@ -107,7 +107,7 @@ export const WorkArticle: React.FC = () => {
         scratch, deployed behind live APIs, and operated for paying customers. Sole
         engineer of BedVibe Studios — a multilingual speech-AI platform built on a
         730M-parameter text-to-speech model trained on consumer GPUs, running on
-        FastAPI, PostgreSQL, Docker and Linux with Stripe-billed usage. Seven
+        FastAPI, PostgreSQL, Docker and Linux with Stripe-billed usage. Eight
         published research records with Zenodo DOIs, and open-source libraries on
         PyPI.
       </p>
