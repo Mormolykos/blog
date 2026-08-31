@@ -56,7 +56,7 @@ export const Home: React.FC = () => {
 
       <div className="facts">
         <div className="fact"><b>730M</b><span>parameter speech model, trained from scratch</span></div>
-        <div className="fact"><b>8</b><span>published research records with DOIs</span></div>
+        <div className="fact"><b>9</b><span>published research records with DOIs</span></div>
         <div className="fact"><b>8</b><span>Model Context Protocol servers</span></div>
         <div className="fact"><b>4</b><span>verification libraries on PyPI</span></div>
       </div>

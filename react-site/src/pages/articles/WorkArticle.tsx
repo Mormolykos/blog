@@ -107,7 +107,7 @@ export const WorkArticle: React.FC = () => {
         scratch, deployed behind live APIs, and operated for paying customers. Sole
         engineer of BedVibe Studios — a multilingual speech-AI platform built on a
         730M-parameter text-to-speech model trained on consumer GPUs, running on
-        FastAPI, PostgreSQL, Docker and Linux with Stripe-billed usage. Eight
+        FastAPI, PostgreSQL, Docker and Linux with Stripe-billed usage. Nine
         published research records with Zenodo DOIs, and open-source libraries on
         PyPI.
       </p>
