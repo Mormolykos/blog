@@ -163,6 +163,9 @@ export const NotEnoughInfoArticle: React.FC = () => {
       <p>Source and data: <a href="https://github.com/Mormolykos/warrant">github.com/Mormolykos/warrant</a>.</p>
 
       <p>If you run contradiction detection, claim verification or conflict surfacing over retrieved documents, I would like to know whether you see the same sign — particularly if you have ground truth I do not, or a prompt that moves the direction rather than the rate. That last one is the result I could not produce.</p>
+
+      <hr />
+      <p>I do this deliberately, to other people's systems, as paid work: a fixed-scope adversarial audit of one retrieval or agent system, every finding delivered with the exact commands to reproduce it and an explicit statement of what it does not show. <a href="https://bedvibe.studio/#audit">Scope and price</a>.</p>
     </article>
   );
 };
