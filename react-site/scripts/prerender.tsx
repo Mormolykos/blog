@@ -72,14 +72,27 @@ if (unlisted.length) {
 }
 
 // Sitemap + llms.txt are generated from the data, so new articles need no edits here.
-const sitemapUrls = [
-  site.site.base_url,
-  `${site.site.base_url}articles/`,
-  ...site.articles.map(a => a.canonical),
+//
+// lastmod is each article's own date_modified. Without it Google gets no freshness
+// signal at all and has no reason to re-crawl -- all 27 URLs shipped bare until
+// 2026-09-07. Home and the article index both re-render whenever an article lands,
+// so they carry the newest article's date rather than a date of their own.
+const newestModified = site.articles
+  .map(a => a.date_modified)
+  .filter(Boolean)
+  .sort()
+  .at(-1);
+if (!newestModified) {
+  throw new Error('no article carries date_modified; sitemap lastmod would be invented');
+}
+const sitemapEntries = [
+  { loc: site.site.base_url, lastmod: newestModified },
+  { loc: `${site.site.base_url}articles/`, lastmod: newestModified },
+  ...site.articles.map(a => ({ loc: a.canonical, lastmod: a.date_modified })),
 ];
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${sitemapUrls.map(u => `  <url><loc>${u}</loc></url>`).join('\n')}
+${sitemapEntries.map(e => `  <url><loc>${e.loc}</loc><lastmod>${e.lastmod}</lastmod></url>`).join('\n')}
 </urlset>`;
 fs.writeFileSync(path.join(distDir, 'sitemap.xml'), sitemap, 'utf8');
 
