@@ -71,16 +71,16 @@
       "tagline": "Automated failure-mode QA for text-to-speech.",
       "description": "Splits structural audio defects from pronunciation errors, canonicalizes both expected text and ASR transcript to spoken form for equivalence-aware WER/CER, and quarantines ASR-uncertain short utterances for human review instead of guessing.",
       "status": "active",
-      "current_version": "0.3.1",
-      "current_release_date": "2026-07-18",
+      "current_version": "0.4.0",
+      "current_release_date": "2026-09-03",
       "install": "pip install ttsproof",
       "repo": "https://github.com/Mormolykos/ttsproof",
       "pypi": "https://pypi.org/project/ttsproof/",
       "license": "MIT",
       "doi": "10.5281/zenodo.20757553",
       "doi_url": "https://doi.org/10.5281/zenodo.20757553",
-      "tests_passing": 42,
-      "release_count": 4,
+      "tests_passing": 79,
+      "release_count": 5,
       "article_id": "ttsproof",
       "highlights": [
         "Built-in benchmark corpus: 817 curated cases across 39 categories, versioned independently of the software",
@@ -90,6 +90,13 @@
         "Backed by a citable 390-sample study (DOI 10.5281/zenodo.20757553, CC-BY-4.0)"
       ],
       "releases": [
+        {
+          "version": "0.4.0",
+          "date": "2026-09-03",
+          "title": "A measurement that was never taken no longer reports zero",
+          "summary": "Tail RMS and peak reported 0.0 on a clip shorter than the tail window. Zero is a real, meaningful value for an audio level — it means silence — and it was being written for a clip the window could not be applied to at all. Every numeric field is now None until it has actually been measured, and the CSV writes an empty cell where it previously wrote 0.0, so anything parsing that CSV straight into floats needs to handle blanks. Under the default configuration a clip that short also trips too_short, so the misleading pair was reachable only with a custom tail_window_sec; both paths now have tests. This matches the pattern ttsproof already used for word error rate, which has always reported blank rather than zero when ASR did not run — the audio fields were the inconsistent ones. 42 → 79 tests.",
+          "url": "https://github.com/Mormolykos/ttsproof/releases/tag/v0.4.0"
+        },
         {
           "version": "0.3.1",
           "date": "2026-07-18",
@@ -119,7 +126,7 @@
           "url": "https://github.com/Mormolykos/ttsproof/releases/tag/v0.1.0"
         }
       ],
-      "tests_as_of_version": "0.3.1"
+      "tests_as_of_version": "0.4.0"
     },
     {
       "id": "trainproof",
@@ -127,17 +134,17 @@
       "tagline": "A deterministic linter for ML training runs.",
       "description": "Deterministic PASS/WARN/FAIL verdicts across a training run's whole life — before it starts (dataset, tokenizer, and an environment preflight that catches a stack which will not import, an unreadable checkpoint, or too little system RAM), a live guardian during training, a post-run autopsy after, and a baseline compare. Reads five log formats including TensorBoard event files, decoded from the wire format with no torch, tensorflow or tensorboard installed. No ML judging ML: every verdict is a rule that fires or doesn't, every finding cites its exact numbers, and a check that could not run is reported as NOT-CHECKED rather than as a pass.",
       "status": "active",
-      "current_version": "0.18.1",
-      "current_release_date": "2026-08-22",
+      "current_version": "0.20.0",
+      "current_release_date": "2026-09-05",
       "_note": "Mechanical fields (version, date, release_count, tests_passing) are written by gen_site_data.py from GitHub Releases, PyPI and pytest --collect-only; release titles and summaries are authored by hand because that producer refuses to invent prose. GitHub Releases and PyPI agree at 12 releases. v0.12.0 uploaded to PyPI 2026-07-31. Verified 2026-07-31.",
       "install": "pip install trainproof",
       "repo": "https://github.com/Mormolykos/trainproof",
       "pypi": "https://pypi.org/project/trainproof/",
       "license": "MIT",
       "built_on": "ttsproof",
-      "tests_passing": 274,
-      "tests_as_of_version": "0.18.1",
-      "release_count": 19,
+      "tests_passing": 379,
+      "tests_as_of_version": "0.20.0",
+      "release_count": 21,
       "article_id": "trainproof",
       "highlights": [
         "Objective checks: catches a cross-entropy ignore_index that is also a valid output class - a collision that silently deletes a target from the loss while leaving the loss curve indistinguishable from a correct run (0.0035 vs 0.0034)",
@@ -152,6 +159,19 @@
         "Reads five log formats including TensorBoard event files, decoded from the wire format with no tensorflow, tensorboard, protobuf, torch or numpy — validated byte-exact against tensorboard's own EventAccumulator, and the rules are exercised on real runs from three frameworks: HuggingFace, Coqui XTTS and PyTorch Lightning"
       ],
       "releases": [
+        {
+          "version": "0.20.0",
+          "date": "2026-09-05",
+          "title": "v0.20.0",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.20.0"
+        },
+        {
+          "version": "0.19.0",
+          "date": "2026-09-03",
+          "title": "Three checks that reported healthy without measuring",
+          "summary": "A behaviour change a consumer will notice: a transcripts file with no usable lines used to exit 0 and now exits 2. oov_rate scored an empty file at 100% coverage because it divided by max(1, total_tokens), so zero tokens produced a perfect result — an empty file is now a NOT-CHECKED verdict, never a score. Tokens-per-second divided every line's tokens by only the timed lines, so two timed lines at a healthy 2/sec alongside sixty untimed ones read as 62/sec and tripped the warning; both sides of the ratio now come from the timed lines. When no line declares a duration there is nothing to measure, and the run said so by staying silent — two new NOT-CHECKED rule IDs now say it out loud. doctor --json dropped the 'N logs not judged' note that the human output prints, which is the consumer that most needs it. Also adds typed coverage for every skipped check: eight terminal states with an owner map, assembled through one builder rather than four dict literals, because a coverage field present on three paths out of four is worse than none. That makes trainproof the first production adopter of the notchecked schema. 90 → 92 rule IDs, 274 → 342 tests.",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.19.0"
+        },
         {
           "version": "0.18.1",
           "date": "2026-08-22",
@@ -298,7 +318,7 @@
       "license": "MIT",
       "doi": null,
       "doi_url": null,
-      "tests_passing": 112,
+      "tests_passing": 119,
       "release_count": 1,
       "article_id": "notchecked",
       "highlights": [
@@ -307,7 +327,7 @@
         "Coverage and verdict as orthogonal axes: a gap cannot carry a verdict, a checked record cannot carry a skip reason",
         "Two denominators, and only the one computed over mechanically checkable targets is quotable",
         "Hardened by two attacks on its own design before release: five API holes, then 24 realistic cases of which five fit no state at all",
-        "Zero dependencies, standard library only, 29 tests, MIT"
+        "Zero dependencies, standard library only, 112 tests in the released 0.2.0, MIT"
       ],
       "releases": [
         {
@@ -315,6 +335,12 @@
           "date": "2026-08-25",
           "title": "v0.2.0",
           "url": "https://github.com/Mormolykos/notchecked/releases/tag/v0.2.0"
+        },
+        {
+          "version": "0.1.0",
+          "date": "2026-08-25",
+          "title": "v0.1.0",
+          "url": "https://pypi.org/project/notchecked/0.1.0/"
         }
       ],
       "tests_as_of_version": "0.2.0"
@@ -323,21 +349,23 @@
       "id": "spkproof",
       "name": "spkproof",
       "tagline": "Deterministic checks for speaker-verification studies.",
-      "description": "Pitch trackers fail on rough phonation, and they fail in one direction: octave errors push an estimate up and essentially never down. Pooled with modal speech, that is not noise but differential measurement error, correlated with condition and loaded onto one side of any directional comparison. Four exact tests catch it in a table a study already has. It measures false rejection, not attacks, and it reports problems in the measurement rather than verdicts about any speaker.",
+      "description": "Pitch trackers fail on rough phonation, and they fail in one direction: octave errors push an estimate up and essentially never down. Pooled with modal speech, that is not noise but differential measurement error, correlated with condition and loaded onto one side of any directional comparison. Nine deterministic rules catch that and the trial-design faults around it — duration confounds, a drifting impostor pool, enrollment leakage, a shifting genuine:impostor ratio — in a table a study already has. Since 0.3.0 it also gates the descriptor itself, reporting an artifact budget in the descriptor's own units before any effect is believed. It measures false rejection, not attacks, and it reports problems in the measurement rather than verdicts about any speaker.",
       "status": "active",
-      "current_version": "0.1.0",
-      "current_release_date": "2026-08-25",
+      "current_version": "0.3.0",
+      "current_release_date": "2026-08-29",
       "install": "pip install spkproof",
       "repo": "https://github.com/Mormolykos/spkproof",
       "pypi": "https://pypi.org/project/spkproof/",
       "license": "MIT",
       "doi": "10.5281/zenodo.21921958",
       "doi_url": "https://doi.org/10.5281/zenodo.21921958",
-      "tests_passing": 46,
-      "release_count": 1,
+      "tests_passing": 119,
+      "release_count": 2,
       "article_id": "speaker-drift",
       "highlights": [
-        "Four exact tests, no approximations: range, octave-harmonic fingerprint, confinement to a condition (Fisher exact), and one-way failures that do not cancel",
+        "Nine rule IDs: four exact F0-contamination tests — range, octave-harmonic fingerprint, confinement to a condition (Fisher exact), one-way failures that do not cancel — plus four trial-design checks and a panel-tie warning",
+        "An admissibility gate for acoustic descriptors that always runs a control broken by construction, and voids every ADMISSIBLE verdict in the run if that control survives — a gate that cannot fail is not a gate",
+        "Warns when a bootstrap cannot produce a survivor at any effect size: a p-value cannot fall below 2/(B+1), so a 9-comparison family at B=200 reads exactly like a clean negative",
         "It found the contamination that made its own author withdraw a published direction: correcting it two equally defensible ways gave opposite answers",
         "Reads a per-utterance table the study already has - no audio, no model refit, no dependencies",
         "A regression test runs it against the published paper's own measurement table and asserts the published numbers, so a change to the library that alters them fails the build",
@@ -345,16 +373,88 @@
       ],
       "releases": [
         {
+          "version": "0.3.0",
+          "date": "2026-08-29",
+          "title": "The library was weaker than the method it documented",
+          "summary": "0.2.0 (never released to PyPI) compared encoders by asking whether their confidence intervals overlapped; the study behind the library had already established that this is the wrong test. New check_descriptor is an admissibility gate for acoustic descriptors — it holds the spectral envelope fixed, sweeps F0 across 18.5 semitones on three envelopes, and reports an artifact budget in the descriptor's own units instead of a pass mark, because a band-mean in dB moves when harmonic spacing changes with no change to the voice. It always runs a control that is broken by construction, and voids every ADMISSIBLE verdict in the run if that control survives, since a gate that cannot fail is not a gate. Adds declare_family() with Holm–Bonferroni reported as both counts, a bootstrap-adequacy warning (a p-value cannot fall below 2/(B+1), so a 9-comparison family at B=200 cannot produce a survivor at any effect size — which reads exactly like a clean negative), and paired_compare(), which differences two encoders inside every bootstrap draw so shared speakers and trials cancel. rank_and_warn now decides ties with the paired test, and the vertex bootstrap became the default resampling unit when the trial table has a test_speaker column. 9 rule IDs.",
+          "url": "https://github.com/Mormolykos/spkproof/releases/tag/v0.3.0"
+        },
+        {
           "version": "0.1.0",
           "date": "2026-08-25",
           "title": "v0.1.0",
           "url": "https://github.com/Mormolykos/spkproof/releases/tag/v0.1.0"
         }
       ],
-      "tests_as_of_version": "0.1.0"
+      "tests_as_of_version": "0.3.0"
     }
   ],
   "articles": [
+    {
+      "id": "hand-written-kernel",
+      "title": "I Wrote the Kernel. Then I Measured It, and at My Model's Shape It Was 1.67x Slower Than Doing Nothing.",
+      "dek": "A hand-written Triton LayerNorm against PyTorch eager and torch.compile on one RTX 5080, at six batch sizes. Above roughly 4,096 rows the kernel wins on time and wins harder on memory - 1.36x faster at 65,536 rows using half the peak memory, 258.5 MB against 512.5 MB. Below that crossover it loses, and this model trains at 128 rows, where it is 1.67x slower than doing nothing. Nothing at that shape is bandwidth-bound: the cost is kernel launch, so the right optimisation is fewer launches, not a better kernel. Includes the two defects the harness found in itself and one cell too unstable to quote.",
+      "path": "/hand-written-kernel/",
+      "canonical": "https://ai.bedvibe.studio/hand-written-kernel/",
+      "date_published": "2026-09-06",
+      "date_modified": "2026-09-06",
+      "display_date": "September 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": null
+    },
+    {
+      "id": "decision-risk",
+      "title": "The Compiler Got 5% Slower. The Benchmark Called It a 10% Regression a Quarter of the Time.",
+      "dek": "IBM's Benchpress pins the seeds that build its circuits and passes no seed to the code that compiles them, so every gate count it reports is one draw from an unmeasured distribution. On bv_n140 over 400 seeds per version across 21 processes, the real change between Qiskit 1.4.3 and 2.0.0 is +5.37% [+4.27, +6.50] — yet the suite's own three-run protocol calls it a >=10% regression 24.4% of the time [19.5, 31.1]. A disjoint 200-seed sample across ten fresh processes reproduces it at 22.6%. Twenty runs per version, about forty hours of compute, still leaves 3.74%. A pre-registered replication over 39 circuits is reported in full, along with four claims withdrawn on the record and six defects an independent audit found in the measuring apparatus itself.",
+      "path": "/decision-risk/",
+      "canonical": "https://ai.bedvibe.studio/decision-risk/",
+      "date_published": "2026-09-04",
+      "date_modified": "2026-09-04",
+      "display_date": "September 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": "https://doi.org/10.5281/zenodo.22310060"
+    },
+    {
+      "id": "index-answered-it",
+      "title": "I Abandoned a Study Because the Index Already Answered It. Then I Checked the Index.",
+      "dek": "A code-intelligence tool indexes your repository and answers questions about it. The obvious objection to benchmarking a language model on graph reachability is that nobody would ask a model — the index answers it exactly, in microseconds. That objection stopped a study I had already built the apparatus for. Before dropping it I ran the index. Its knowledge graph has no function-level nodes at all, so the question I was told it answered perfectly is one it does not answer. Two bugs fell out on the way, both now filed and both confirmed by the maintainer at source level. One of his answers is the part worth keeping: a field that looks like evidence for an edge carries no guarantee, and a wrong reason looks identical to a right one.",
+      "path": "/index-answered-it/",
+      "canonical": "https://ai.bedvibe.studio/index-answered-it/",
+      "date_published": "2026-09-02",
+      "date_modified": "2026-09-02",
+      "display_date": "September 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": "https://github.com/Muvon/octocode/issues/85"
+    },
+    {
+      "id": "retrieval-ablation",
+      "title": "I Assumed My Retriever Failed at Stage One. The Bigger Failure Was at Stage Three.",
+      "dek": "Hierarchical retrieval came third of five on a 240,767-word corpus, behind a much simpler baseline. I blamed chapter selection. A stage-level ablation over 80 questions and 400 scored rows says chapter selection cost 27 questions and neighbour expansion cost 32. Disabling that one stage raised context recall from 0.3365 to 0.4771, exactly level with the baseline it was losing to, while the hit@k columns did not move at all. Oracle-chapter routing reaches 0.7844, which bounds how much is left in the router.",
+      "path": "/retrieval-ablation/",
+      "canonical": "https://ai.bedvibe.studio/retrieval-ablation/",
+      "date_published": "2026-08-31",
+      "date_modified": "2026-08-31",
+      "display_date": "August 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": "https://doi.org/10.5281/zenodo.20692450"
+    },
+    {
+      "id": "encoders-disagree",
+      "title": "Fourteen Encoders Heard the Same Voice. Their Error Rates Differed Five-Fold.",
+      "dek": "Eight speakers each recorded the same 1,360 sentences in six phonation states, so the words are held constant and only the delivery changes. On one frozen list of 11,935 trials, equal error rate ran from 0.047 to 0.233 — produced by nothing but the choice of encoder, with 29 of 91 pairwise comparisons surviving Holm-Bonferroni correction. CAMPPlus is last for every speaker and every condition, and the mechanism is impostor-score compression: it places different people at cosine 0.28-0.34 where others place them near 0.034. Parameter count does not order the panel. Ten claims were retracted along the way, including one asserted with an instrument whose artifact budget exceeded the effect.",
+      "path": "/encoders-disagree/",
+      "canonical": "https://ai.bedvibe.studio/encoders-disagree/",
+      "date_published": "2026-08-31",
+      "date_modified": "2026-08-31",
+      "display_date": "August 2026",
+      "project_id": "spkproof",
+      "og_type": "article",
+      "citation": "https://doi.org/10.5281/zenodo.22158030"
+    },
     {
       "id": "structure-not-scale",
       "title": "My Headline Was +32 Points. Then I Audited My Own Scorer.",
@@ -572,11 +672,11 @@
       "path": "/eos-collision/",
       "canonical": "https://ai.bedvibe.studio/eos-collision/",
       "date_published": "2026-08-09",
-      "date_modified": "2026-08-09",
+      "date_modified": "2026-08-31",
       "display_date": "August 2026",
       "project_id": "trainproof",
       "og_type": "article",
-      "citation": null
+      "citation": "https://doi.org/10.5281/zenodo.21864658"
     },
     {
       "id": "compiled-chronology",
