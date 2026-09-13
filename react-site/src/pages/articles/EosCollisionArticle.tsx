@@ -52,6 +52,40 @@ eos_id = NUM_AUDIO_TOKENS                  # 1024
 
       <p>"Save the checkpoint with the lowest validation loss" is the default in more or less every training script in existence, including the ones I have written. On this run it was actively the wrong rule, and the number it optimised looked better the whole way down.</p>
 
+      <p>Here is the run it came from — 200 epochs at lr = 2×10⁻⁵, evaluated every 50 on a fixed split held out by utterance (n = 32). <em>Rank</em> is the stop token's position among 1025 classes at the true terminal frame.</p>
+
+      <table>
+        <thead>
+          <tr><th>epoch</th><th>training loss</th><th>mean P(stop)</th><th>argmax = stop</th><th>self-terminated</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>50</td><td>2.199</td><td>0.4218</td><td>16 / 32</td><td>2 / 8</td></tr>
+          <tr><td><strong>100</strong></td><td>1.628</td><td><strong>0.4655</strong></td><td><strong>18 / 32</strong></td><td><strong>6 / 8</strong></td></tr>
+          <tr><td>150</td><td><strong>1.302</strong></td><td>0.2159</td><td>8 / 32</td><td>3 / 8</td></tr>
+          <tr><td>200</td><td>1.429</td><td>0.1818</td><td>5 / 32</td><td>3 / 8</td></tr>
+        </tbody>
+      </table>
+
+      <p>Read the loss column and the capability columns against each other. Between epochs 100 and 150 the training loss <strong>improved by 20%</strong> while mean P(stop) fell <strong>54%</strong>, top-1 stop accuracy went from 18/32 to 8/32, autonomous termination halved, and the stop token's rank nearly doubled.</p>
+
+      <p><strong>Selecting by lowest training loss returns epoch 150. The model that actually terminates reliably is epoch 100.</strong> The reversal was observed independently in a shorter run, which is why I am willing to state it.</p>
+
+      <p>For completeness, what fixing the collision bought on the real model — same held-out split:</p>
+
+      <table>
+        <thead>
+          <tr><th>checkpoint</th><th>mean P(stop)</th><th>argmax = stop</th><th>rank</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>random initialisation</td><td>0.001848</td><td>0 / 32</td><td>111.6</td></tr>
+          <tr><td>after correction</td><td>0.4655</td><td>18 / 32</td><td><strong>2.1</strong></td></tr>
+        </tbody>
+      </table>
+
+      <p>End-to-end synthesis then terminated on its own at frame 203 against a 350-frame ceiling. Before the fix that was impossible by two independent mechanisms: the training-time collision above, and an inference-time mask that set the logit of every index at or beyond the codebook size — including end-of-sequence — to −∞ before sampling.</p>
+
+      <p>One honest loose end: P(stop) plateaus in the range <strong>0.35–0.47</strong> across two learning rates and a 5.9× increase in training data (224 → 1313 utterances, with speaker, language, emotion and the held-out split all held constant). So the plateau is not a data-quantity limit. I have no confirmed explanation for it. Terminal timing in speech is genuinely ambiguous, and hedging with the stop token ranked second of 1025 may simply be correct behaviour.</p>
+
       <h2>The same integer, safe one stage over</h2>
 
       <p>The detail I find most instructive: the identical line is harmless in the next stage of the same model.</p>
@@ -80,6 +114,11 @@ eos_id = NUM_AUDIO_TOKENS                  # 1024
       <p>I don't think this is rare. Any codebase where a padding sentinel, an end-of-sequence id, and a vocabulary size are all defined as named constants in different files can produce it, and none of your instrumentation will complain. The loss goes down. The run looks fine. The model quietly never learns one specific thing, and you spend months looking at the wrong layer.</p>
 
       <p>If you fine-tune anything with a custom <code>ignore_index</code>, go and check it against your output layer's width right now. It takes thirty seconds and the failure mode is silent.</p>
+
+      <hr />
+
+      <p><strong>Paper:</strong> <em>The Loss Curve Is Not a Sufficient Statistic — Silent Objective Failures from Sentinel–Class Collisions in Neural Codec Language Models</em> — Zenodo, August 2026, CC-BY-4.0. It carries the full derivation, the 40-line CPU reproduction, and both detectors as specified rules.</p>
+      <p><strong>DOI:</strong> <a href="https://doi.org/10.5281/zenodo.21864658" target="_blank" rel="noopener noreferrer">10.5281/zenodo.21864658</a> (concept DOI — always resolves to the newest version).</p>
 
       <p><em>Related: <a href="/corrupted-training-data/">why corrupted training data doesn't show up as high loss</a> — the same lesson from the data side. <a href="https://github.com/Mormolykos/trainproof" target="_blank" rel="noopener noreferrer">trainproof on GitHub</a>, MIT.</em></p>
     </article>

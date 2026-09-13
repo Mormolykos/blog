@@ -132,6 +132,40 @@ export const NotEnoughInfoArticle: React.FC = () => {
 
       <p><strong>What this is not.</strong> Five of the eight runs carry the wrong sign and I am not offering that as a result — no sign test is claimed here and it would not pass one. Only the two 14B runs are individually significant. Above 80% refusal the rates compress against a ceiling, which is where 8b · caution sits. The stated group is 167 pairs against 561. And <em>discrimination</em> here means separating pairs that state their conditions from pairs that do not — not separating true contradictions from false ones, for which this corpus supplies no ground truth.</p>
 
+      <h2>It is graded, not binary</h2>
+
+      <p>The same reader pushed further: if a cautious instruction is reading detail as a risk signal, then refusal should rise with the <em>amount</em> of detail, not just with the stated/missing split. Counting stated axes across both sides of a pair gives a 0–12 scale to test that on. Spearman, permutation p:</p>
+
+      <table>
+        <thead>
+          <tr><th>Run</th><th>ρ(refusal, stated axes)</th><th>controlling for length</th><th>length-matched</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>14b · original</td><td>−0.027 (p=0.47)</td><td>+0.053 (p=0.16)</td><td>+0.057 (p=0.13)</td></tr>
+          <tr><td>14b · caution</td><td><strong>+0.132</strong> (p=0.0006)</td><td><strong>+0.188</strong> (p&lt;0.0001)</td><td>+0.175 (p&lt;0.0001)</td></tr>
+          <tr><td>14b · strict evidence</td><td><strong>+0.090</strong> (p=0.015)</td><td><strong>+0.152</strong> (p&lt;0.0001)</td><td>+0.151 (p=0.0001)</td></tr>
+          <tr><td>14b · conservative</td><td>−0.027 (p=0.47)</td><td>+0.038 (p=0.31)</td><td>+0.045 (p=0.23)</td></tr>
+          <tr><td>8b · original</td><td>−0.008 (p=0.83)</td><td>+0.002 (p=0.96)</td><td>−0.002 (p=0.97)</td></tr>
+          <tr><td>8b · caution</td><td>−0.011 (p=0.77)</td><td>−0.014 (p=0.72)</td><td>−0.037 (p=0.31)</td></tr>
+          <tr><td>8b · strict evidence</td><td><strong>+0.083</strong> (p=0.026)</td><td><strong>+0.098</strong> (p=0.0096)</td><td>+0.087 (p=0.019)</td></tr>
+          <tr><td>8b · conservative</td><td><strong>+0.112</strong> (p=0.0021)</td><td><strong>+0.131</strong> (p=0.0003)</td><td>+0.132 (p=0.0005)</td></tr>
+        </tbody>
+      </table>
+
+      <p>Under the original prompt there is no relationship on either model. The cautious instruction creates one. So it is not a property of the corpus — it is something the instruction introduces.</p>
+
+      <h2>Is it just that longer text gets refused?</h2>
+
+      <p>That was the next objection and it is the right one. A pair that states more axes is a longer pair, and a small model might refuse long input for no cleverer reason than its length. The confound is real: Spearman(stated axes, words) = <strong>+0.362</strong>, and the median input rises monotonically, 62 words at three stated axes to 94 at nine.</p>
+
+      <p>It does not survive the test. Correlating refusal against length directly, the 14B runs all come out <strong>negative</strong> — longer input refuses <em>less</em> — at −0.116 to −0.208, every one significant. On the 8B, the model the objection was really about, there is no relationship at all under any of the four prompts: −0.028 to +0.006, every p above 0.45.</p>
+
+      <p>Length and stated axes correlate with each other and pull in opposite directions on refusal. That is suppression, and it means length was <em>hiding</em> the effect rather than producing it: hold length constant and every positive correlation gets larger, 14b · caution from +0.132 to +0.188. Both columns above show it — a partial correlation residualised on length ranks, and a stratification that bins pairs into length deciles and shuffles refusal only within a bin, so no comparison ever crosses lengths. Two methods, the same four significant cells and the same four nulls.</p>
+
+      <p><strong>A correction that fell out of rebuilding it.</strong> The first version of those rank correlations joined the axis annotations on PMID alone. A PMID can carry more than one claim sentence, so the correct key is the PMID <em>and</em> the sentence hash. Re-keying moves all eight values by at most 0.005 and changes no sign and no verdict. The table above uses the corrected key, and <code>length_control.py</code> in the repo checks itself against the published figures and fails loudly if that gap ever exceeds 0.006.</p>
+
+      <p><strong>What this does not show.</strong> These are small correlations — +0.188 is the largest of them, and p=0.0001 on 728 pairs is n doing the work, not effect size. Word count is whitespace tokens rather than the model's own tokenizer; character count gives the same picture but both are proxies. And ruling out length is not identifying a mechanism. The experiment that would identify one — the conservative prompt with an explicit criteria list added and nothing else changed — has not been run.</p>
+
       <h2>A guess at why, which I have not tested</h2>
 
       <p>When the conditions are stated, a model can see that they differ — "Korean women" against "Mexican Mestizo population" — and it refuses. When the conditions are absent there is nothing visible to differ, so two bare opposing claims read as a clean conflict.</p>

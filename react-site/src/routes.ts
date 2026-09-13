@@ -21,6 +21,11 @@ import { CrawledNotIndexedArticle } from './pages/articles/CrawledNotIndexedArti
 import { NotEnoughInfoArticle } from './pages/articles/NotEnoughInfoArticle';
 import { BrokenInstrumentsArticle } from './pages/articles/BrokenInstrumentsArticle';
 import { StructureNotScaleArticle } from './pages/articles/StructureNotScaleArticle';
+import { IndexAnsweredItArticle } from './pages/articles/IndexAnsweredItArticle';
+import { EncodersDisagreeArticle } from './pages/articles/EncodersDisagreeArticle';
+import { RetrievalAblationArticle } from './pages/articles/RetrievalAblationArticle';
+import { DecisionRiskArticle } from './pages/articles/DecisionRiskArticle';
+import { HandWrittenKernelArticle } from './pages/articles/HandWrittenKernelArticle';
 
 // THE route table. One list, two consumers: scripts/prerender.tsx (production
 // static build) and src/main.tsx (dev preview).
@@ -55,4 +60,9 @@ export const routes: Record<string, React.FC> = {
   '/broken-instruments/': BrokenInstrumentsArticle,
   '/not-enough-info/': NotEnoughInfoArticle,
   '/structure-not-scale/': StructureNotScaleArticle,
+  '/index-answered-it/': IndexAnsweredItArticle,
+  '/encoders-disagree/': EncodersDisagreeArticle,
+  '/retrieval-ablation/': RetrievalAblationArticle,
+  '/decision-risk/': DecisionRiskArticle,
+  '/hand-written-kernel/': HandWrittenKernelArticle,
 };
