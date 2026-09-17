@@ -28,8 +28,31 @@
     },
     "org_url": "https://bedvibe.studio/",
     "org_id": "https://bedvibe.studio/#organization",
+    "org": {
+      "name": "BedVibe Studios",
+      "legal_name": "BED VIBE GKILIS",
+      "org_number": "935 267 897",
+      "founding_date": "2025-03-25",
+      "locality": "Oslo",
+      "country": "NO",
+      "logo": "https://bedvibe.studio/assets/bedvibe-validation-mark.webp",
+      "email": "bedvibe@bedvibe.studio",
+      "same_as": [
+        "https://bedvibe.studio/",
+        "https://tts.bedvibe.studio/",
+        "https://geo.bedvibe.studio/",
+        "https://github.com/Mormolykos",
+        "https://orcid.org/0009-0007-3805-170X"
+      ]
+    },
     "portfolio_url": "https://tts.bedvibe.studio/portfolio/",
     "github_url": "https://github.com/Mormolykos",
+    "stats": {
+      "model_params": "730M",
+      "research_records": 10,
+      "research_records_source": "ORCID 0009-0007-3805-170X",
+      "research_records_measured": "2026-09-15"
+    },
     "corner_link": {
       "label": "bedvibe.studio",
       "href": "https://bedvibe.studio/"
@@ -41,24 +64,29 @@
         "external": false
       },
       {
+        "label": "Research",
+        "href": "/research/",
+        "external": false
+      },
+      {
+        "label": "Benchmarks",
+        "href": "/benchmarks/",
+        "external": false
+      },
+      {
+        "label": "Software",
+        "href": "/software/",
+        "external": false
+      },
+      {
+        "label": "Engineering",
+        "href": "/engineering/",
+        "external": false
+      },
+      {
         "label": "Work",
         "href": "/work/",
         "external": false
-      },
-      {
-        "label": "Articles",
-        "href": "/articles/",
-        "external": false
-      },
-      {
-        "label": "Portfolio",
-        "href": "https://tts.bedvibe.studio/portfolio/",
-        "external": true
-      },
-      {
-        "label": "GitHub",
-        "href": "https://github.com/Mormolykos",
-        "external": true
       }
     ],
     "projects_heading": "Python libraries",
@@ -77,8 +105,8 @@
       "repo": "https://github.com/Mormolykos/ttsproof",
       "pypi": "https://pypi.org/project/ttsproof/",
       "license": "MIT",
-      "doi": "10.5281/zenodo.20757553",
-      "doi_url": "https://doi.org/10.5281/zenodo.20757553",
+      "doi": "10.5281/zenodo.20757552",
+      "doi_url": "https://doi.org/10.5281/zenodo.20757552",
       "tests_passing": 79,
       "release_count": 5,
       "article_id": "ttsproof",
@@ -87,7 +115,7 @@
         "Equivalence-aware WER/CER with diacritic folding (Reykjavik == Reykjavík)",
         "ASR-uncertainty quarantine — sets aside cases too short to auto-judge instead of guessing",
         "One-command engine benchmarking, self-contained HTML reports, and a CI regression gate",
-        "Backed by a citable 390-sample study (DOI 10.5281/zenodo.20757553, CC-BY-4.0)"
+        "Backed by a citable 390-sample study (DOI 10.5281/zenodo.20757552, CC-BY-4.0)"
       ],
       "releases": [
         {
@@ -134,17 +162,17 @@
       "tagline": "A deterministic linter for ML training runs.",
       "description": "Deterministic PASS/WARN/FAIL verdicts across a training run's whole life — before it starts (dataset, tokenizer, and an environment preflight that catches a stack which will not import, an unreadable checkpoint, or too little system RAM), a live guardian during training, a post-run autopsy after, and a baseline compare. Reads five log formats including TensorBoard event files, decoded from the wire format with no torch, tensorflow or tensorboard installed. No ML judging ML: every verdict is a rule that fires or doesn't, every finding cites its exact numbers, and a check that could not run is reported as NOT-CHECKED rather than as a pass.",
       "status": "active",
-      "current_version": "0.20.0",
-      "current_release_date": "2026-09-05",
+      "current_version": "0.21.0",
+      "current_release_date": "2026-09-13",
       "_note": "Mechanical fields (version, date, release_count, tests_passing) are written by gen_site_data.py from GitHub Releases, PyPI and pytest --collect-only; release titles and summaries are authored by hand because that producer refuses to invent prose. GitHub Releases and PyPI agree at 12 releases. v0.12.0 uploaded to PyPI 2026-07-31. Verified 2026-07-31.",
       "install": "pip install trainproof",
       "repo": "https://github.com/Mormolykos/trainproof",
       "pypi": "https://pypi.org/project/trainproof/",
       "license": "MIT",
       "built_on": "ttsproof",
-      "tests_passing": 379,
-      "tests_as_of_version": "0.20.0",
-      "release_count": 21,
+      "tests_passing": 470,
+      "tests_as_of_version": "0.21.0",
+      "release_count": 22,
       "article_id": "trainproof",
       "highlights": [
         "Objective checks: catches a cross-entropy ignore_index that is also a valid output class - a collision that silently deletes a target from the loss while leaving the loss curve indistinguishable from a correct run (0.0035 vs 0.0034)",
@@ -159,6 +187,12 @@
         "Reads five log formats including TensorBoard event files, decoded from the wire format with no tensorflow, tensorboard, protobuf, torch or numpy — validated byte-exact against tensorboard's own EventAccumulator, and the rules are exercised on real runs from three frameworks: HuggingFace, Coqui XTTS and PyTorch Lightning"
       ],
       "releases": [
+        {
+          "version": "0.21.0",
+          "date": "2026-09-13",
+          "title": "v0.21.0",
+          "url": "https://github.com/Mormolykos/trainproof/releases/tag/v0.21.0"
+        },
         {
           "version": "0.20.0",
           "date": "2026-09-05",
@@ -357,8 +391,8 @@
       "repo": "https://github.com/Mormolykos/spkproof",
       "pypi": "https://pypi.org/project/spkproof/",
       "license": "MIT",
-      "doi": "10.5281/zenodo.21921958",
-      "doi_url": "https://doi.org/10.5281/zenodo.21921958",
+      "doi": "10.5281/zenodo.21921957",
+      "doi_url": "https://doi.org/10.5281/zenodo.21921957",
       "tests_passing": 119,
       "release_count": 2,
       "article_id": "speaker-drift",
@@ -391,11 +425,26 @@
   ],
   "articles": [
     {
+      "id": "decoder-benchmark",
+      "title": "Three of Twenty Decoders Actually Stream. My Quality Metric Was Beaten by an Algorithm from 1984.",
+      "dek": "Twenty neural audio decoders, five pre-registered gates, identical audio. Only three reproduce full-context output from partial input with load-bearing state - the causal FocalCodec configurations, at state ratios of 3,530 to 36,740 against a threshold of 10 - while fifteen are stateless chunking and the non-causal negative controls sit at exactly 1. The sole pre-registered cross-arm quality metric was topped by Griffin-Lim, zero trained parameters, in six states of six; the obvious explanation was tested and refuted. A second measurement sharing no implementation, speaker-embedding retention across three separately calibrated encoders, found a near-zero median additional change for the same three arms when streamed - offline-streamed cosine 0.999866 to 0.999946 - where thirteen others lose -0.078 to -0.742 on the separate retention delta. Five independent audits found three defects that changed conclusions, and a fifth round after publication found the advertised reproduction commands did not run. Corrected in v1.0.1; no measurement changed. No listening test was run.",
+      "path": "/decoder-benchmark/",
+      "canonical": "https://ai.bedvibe.studio/decoder-benchmark/",
+      "category": "benchmarks",
+      "date_published": "2026-09-16",
+      "date_modified": "2026-09-17",
+      "display_date": "September 2026",
+      "project_id": null,
+      "og_type": "article",
+      "citation": "https://doi.org/10.5281/zenodo.22798415"
+    },
+    {
       "id": "hand-written-kernel",
       "title": "I Wrote the Kernel. Then I Measured It, and at My Model's Shape It Was 1.67x Slower Than Doing Nothing.",
       "dek": "A hand-written Triton LayerNorm against PyTorch eager and torch.compile on one RTX 5080, at six batch sizes. Above roughly 4,096 rows the kernel wins on time and wins harder on memory - 1.36x faster at 65,536 rows using half the peak memory, 258.5 MB against 512.5 MB. Below that crossover it loses, and this model trains at 128 rows, where it is 1.67x slower than doing nothing. Nothing at that shape is bandwidth-bound: the cost is kernel launch, so the right optimisation is fewer launches, not a better kernel. Includes the two defects the harness found in itself and one cell too unstable to quote.",
       "path": "/hand-written-kernel/",
       "canonical": "https://ai.bedvibe.studio/hand-written-kernel/",
+      "category": "benchmarks",
       "date_published": "2026-09-06",
       "date_modified": "2026-09-06",
       "display_date": "September 2026",
@@ -409,12 +458,13 @@
       "dek": "IBM's Benchpress pins the seeds that build its circuits and passes no seed to the code that compiles them, so every gate count it reports is one draw from an unmeasured distribution. On bv_n140 over 400 seeds per version across 21 processes, the real change between Qiskit 1.4.3 and 2.0.0 is +5.37% [+4.27, +6.50] — yet the suite's own three-run protocol calls it a >=10% regression 24.4% of the time [19.5, 31.1]. A disjoint 200-seed sample across ten fresh processes reproduces it at 22.6%. Twenty runs per version, about forty hours of compute, still leaves 3.74%. A pre-registered replication over 39 circuits is reported in full, along with four claims withdrawn on the record and six defects an independent audit found in the measuring apparatus itself.",
       "path": "/decision-risk/",
       "canonical": "https://ai.bedvibe.studio/decision-risk/",
+      "category": "research",
       "date_published": "2026-09-04",
       "date_modified": "2026-09-04",
       "display_date": "September 2026",
       "project_id": null,
       "og_type": "article",
-      "citation": "https://doi.org/10.5281/zenodo.22310060"
+      "citation": "https://doi.org/10.5281/zenodo.22310059"
     },
     {
       "id": "index-answered-it",
@@ -422,6 +472,7 @@
       "dek": "A code-intelligence tool indexes your repository and answers questions about it. The obvious objection to benchmarking a language model on graph reachability is that nobody would ask a model — the index answers it exactly, in microseconds. That objection stopped a study I had already built the apparatus for. Before dropping it I ran the index. Its knowledge graph has no function-level nodes at all, so the question I was told it answered perfectly is one it does not answer. Two bugs fell out on the way, both now filed and both confirmed by the maintainer at source level. One of his answers is the part worth keeping: a field that looks like evidence for an edge carries no guarantee, and a wrong reason looks identical to a right one.",
       "path": "/index-answered-it/",
       "canonical": "https://ai.bedvibe.studio/index-answered-it/",
+      "category": "research",
       "date_published": "2026-09-02",
       "date_modified": "2026-09-02",
       "display_date": "September 2026",
@@ -435,6 +486,7 @@
       "dek": "Hierarchical retrieval came third of five on a 240,767-word corpus, behind a much simpler baseline. I blamed chapter selection. A stage-level ablation over 80 questions and 400 scored rows says chapter selection cost 27 questions and neighbour expansion cost 32. Disabling that one stage raised context recall from 0.3365 to 0.4771, exactly level with the baseline it was losing to, while the hit@k columns did not move at all. Oracle-chapter routing reaches 0.7844, which bounds how much is left in the router.",
       "path": "/retrieval-ablation/",
       "canonical": "https://ai.bedvibe.studio/retrieval-ablation/",
+      "category": "research",
       "date_published": "2026-08-31",
       "date_modified": "2026-08-31",
       "display_date": "August 2026",
@@ -448,6 +500,7 @@
       "dek": "Eight speakers each recorded the same 1,360 sentences in six phonation states, so the words are held constant and only the delivery changes. On one frozen list of 11,935 trials, equal error rate ran from 0.047 to 0.233 — produced by nothing but the choice of encoder, with 29 of 91 pairwise comparisons surviving Holm-Bonferroni correction. CAMPPlus is last for every speaker and every condition, and the mechanism is impostor-score compression: it places different people at cosine 0.28-0.34 where others place them near 0.034. Parameter count does not order the panel. Ten claims were retracted along the way, including one asserted with an instrument whose artifact budget exceeded the effect.",
       "path": "/encoders-disagree/",
       "canonical": "https://ai.bedvibe.studio/encoders-disagree/",
+      "category": "benchmarks",
       "date_published": "2026-08-31",
       "date_modified": "2026-08-31",
       "display_date": "August 2026",
@@ -461,6 +514,7 @@
       "dek": "Thirty-eight questions ask whether one event precedes another when the two are narrated in different documents and share no character, place or causal link. No passage states either relation. Given the passages, every model scored 0 of 38 and refused almost every time — correctly. Given the identical facts as a structured chronology, an 8B model scored 28 of 38, matching a 14B model given prose. Then I audited the scorer that produced that and my headline lost half its size: +32 points became +15.8. The equivalence survived; the gap did not. Corrected in place, not retracted.",
       "path": "/structure-not-scale/",
       "canonical": "https://ai.bedvibe.studio/structure-not-scale/",
+      "category": "research",
       "date_published": "2026-08-30",
       "date_modified": "2026-08-30",
       "display_date": "August 2026",
@@ -474,6 +528,7 @@
       "dek": "I audited 38 live pages and fixed some ordinary defects. The two things worth writing down both came from my own tooling being broken. One script reported three pages I had just fixed as still broken, because it did not recognise a relative link. One date parser had thrown an exception on every crawl-statistics read since it was written, so the report that answers \"is the crawler arriving at all\" had never once returned a number. Repairing it showed one search engine crawling this host 15–36 pages a day and holding 34, while the other holds none. Baseline recorded, prediction made, re-measure dated.",
       "path": "/broken-instruments/",
       "canonical": "https://ai.bedvibe.studio/broken-instruments/",
+      "category": "research",
       "date_published": "2026-08-28",
       "date_modified": "2026-08-28",
       "display_date": "August 2026",
@@ -487,6 +542,7 @@
       "dek": "One of my hosts had 0 of 38 URLs in Google while four sibling hosts on the same domain, the same IPs and the same certificate indexed normally. The standard advice is to submit the URLs, so I submitted them against a held-out control: treatment 32%, control 33%. Fifteen causes eliminated with measurements, two of them my own hypotheses withdrawn — and then the impressions report showed the pages had been indexed and served all along, and lost. Locus established, mechanism unknown.",
       "path": "/crawled-not-indexed/",
       "canonical": "https://ai.bedvibe.studio/crawled-not-indexed/",
+      "category": "research",
       "date_published": "2026-08-27",
       "date_modified": "2026-08-27",
       "display_date": "August 2026",
@@ -500,6 +556,7 @@
       "dek": "My portfolio agent holds 1,003 chunks and answers from six of them — 0.598% — and the answer reads identically to one built from reading all 1,003. That is fine for “he mentions Rust” and false for “he never mentions Rust”, from the same six chunks. Faithfulness cannot catch it: an answer perfectly grounded in what was retrieved can still be wrong about what was not. The control is the shape of the claim, not a coverage threshold.",
       "path": "/retrieval-coverage/",
       "canonical": "https://ai.bedvibe.studio/retrieval-coverage/",
+      "category": "research",
       "date_published": "2026-08-25",
       "date_modified": "2026-08-25",
       "display_date": "August 2026",
@@ -513,6 +570,7 @@
       "dek": "Production ML systems, MLOps, speech and language AI. A 730M-parameter TTS model trained from scratch and served behind a live API, a grounded RAG agent behind a 32-case adversarial gate, an OpenAI-compatible model gateway, MCP tooling, seven Zenodo DOIs and four open-source libraries. Everything deployed, measured, and open to inspection.",
       "path": "/work/",
       "canonical": "https://ai.bedvibe.studio/work/",
+      "category": null,
       "date_published": "2026-08-25",
       "date_modified": "2026-08-25",
       "display_date": "August 2026",
@@ -526,6 +584,7 @@
       "dek": "I removed the backpressure from my own model gateway to see what would break. Thirty-two callers, thirty-two HTTP 200s, and thirty-one arrived after the caller had given up. Then I made a backend go slow instead of dying, and watched failover log eight successes without ever calling the healthy backend. Both faults produced a clean log.",
       "path": "/success-rate/",
       "canonical": "https://ai.bedvibe.studio/success-rate/",
+      "category": "engineering",
       "date_published": "2026-08-24",
       "date_modified": "2026-08-24",
       "display_date": "August 2026",
@@ -539,6 +598,7 @@
       "dek": "A two-thousand-line component that turns a live, unreliable sensor feed into a collision picture in under a millisecond per cycle, built to be embedded inside a larger system. What it is, what a system like it is used for, why the problem is hard, and one measured investigation: a fault that caused 16.1% of valid observations to be rejected, cut to 1.9% by an architectural change.",
       "path": "/observation-time/",
       "canonical": "https://ai.bedvibe.studio/observation-time/",
+      "category": "engineering",
       "date_published": "2026-08-14",
       "date_modified": "2026-08-15",
       "display_date": "August 2026",
@@ -552,12 +612,13 @@
       "dek": "I wrote a finite element solver from nothing and pointed it at an answer known since 1898. It landed on 3.00002. Then a test I was sure would pass didn't, two explanations for why both collapsed, and a number the internet repeats confidently failed to reproduce.",
       "path": "/fem-kirsch/",
       "canonical": "https://ai.bedvibe.studio/fem-kirsch/",
+      "category": "research",
       "date_published": "2026-08-14",
       "date_modified": "2026-08-14",
       "display_date": "August 2026",
       "project_id": null,
       "og_type": "article",
-      "citation": "https://doi.org/10.5281/zenodo.21892064",
+      "citation": "https://doi.org/10.5281/zenodo.21892063",
       "image": "https://ai.bedvibe.studio/fem-mesh-stress.png"
     },
     {
@@ -566,12 +627,13 @@
       "dek": "Four speakers, eight matched sentences, three encoder architectures. One speaker moved his pitch by less than a semitone and lost a quarter of his identity score. Includes a control that could have killed the result, a prior-art audit that killed my headline claim, and a pre-registered prediction I withdrew because two defensible ways of cleaning the data gave opposite answers.",
       "path": "/speaker-drift/",
       "canonical": "https://ai.bedvibe.studio/speaker-drift/",
+      "category": "research",
       "date_published": "2026-08-13",
       "date_modified": "2026-08-13",
       "display_date": "August 2026",
       "project_id": null,
       "og_type": "article",
-      "citation": "https://doi.org/10.5281/zenodo.21921958"
+      "citation": "https://doi.org/10.5281/zenodo.21921957"
     },
     {
       "id": "canon-state",
@@ -579,6 +641,7 @@
       "dek": "A fictional universe outgrew my context window. So I stopped treating it as a pile of documents and started treating it as a persistent, machine-readable knowledge system that generation has to be validated against.",
       "path": "/canon-state/",
       "canonical": "https://ai.bedvibe.studio/canon-state/",
+      "category": "engineering",
       "date_published": "2026-08-11",
       "date_modified": "2026-08-11",
       "display_date": "August 2026",
@@ -592,6 +655,7 @@
       "dek": "The standard shortcut overstates photon emission from a black hole by 4.16x. Six validation gates, two analytic limits the code was never tuned to, and one number I had to retract.",
       "path": "/greybody/",
       "canonical": "https://ai.bedvibe.studio/greybody/",
+      "category": "research",
       "date_published": "2026-08-10",
       "date_modified": "2026-08-10",
       "display_date": "August 2026",
@@ -606,12 +670,13 @@
       "dek": "ttsproof: automated failure-mode QA for text-to-speech, backed by a published 390-sample study.",
       "path": "/ttsproof/",
       "canonical": "https://ai.bedvibe.studio/ttsproof/",
+      "category": "software",
       "date_published": "2026-07-19",
       "date_modified": "2026-07-19",
       "display_date": "July 2026",
       "project_id": "ttsproof",
       "og_type": "article",
-      "citation": "https://doi.org/10.5281/zenodo.20757553"
+      "citation": "https://doi.org/10.5281/zenodo.20757552"
     },
     {
       "id": "trainproof",
@@ -619,6 +684,7 @@
       "dek": "A run learning pure noise reduced its loss by 62% and looked textbook-healthy. trainproof catches the training failures that can be caught — and is honest about the ones that can't.",
       "path": "/trainproof/",
       "canonical": "https://ai.bedvibe.studio/trainproof/",
+      "category": "software",
       "date_published": "2026-07-19",
       "date_modified": "2026-07-19",
       "display_date": "July 2026",
@@ -632,6 +698,7 @@
       "dek": "Six years, six books, one fantasy world, and a stack of tooling built to stop the machine from drifting. What \"AI-assisted\" actually looks like when a human directs the whole thing.",
       "path": "/ai-authorship/",
       "canonical": "https://ai.bedvibe.studio/ai-authorship/",
+      "category": "engineering",
       "date_published": "2026-08-07",
       "date_modified": "2026-08-07",
       "display_date": "August 2026",
@@ -645,6 +712,7 @@
       "dek": "Undocumented behaviours in Photopea's Live Messaging API - measured, with the workaround for each. If your automation reports success and changes nothing, one of these is probably why.",
       "path": "/photopea-scripting/",
       "canonical": "https://ai.bedvibe.studio/photopea-scripting/",
+      "category": "research",
       "date_published": "2026-08-08",
       "date_modified": "2026-08-08",
       "display_date": "August 2026",
@@ -658,6 +726,7 @@
       "dek": "Everyone assumes bad samples announce themselves. Two failures from my own work - one reproducible, one from production - say the opposite: noise is learnable, so it hides.",
       "path": "/corrupted-training-data/",
       "canonical": "https://ai.bedvibe.studio/corrupted-training-data/",
+      "category": "research",
       "date_published": "2026-08-09",
       "date_modified": "2026-08-09",
       "display_date": "August 2026",
@@ -671,6 +740,7 @@
       "dek": "My text-to-speech model trained for weeks and never learned to stop talking. The cause was two constants that happened to be equal - and no loss curve, anywhere, could have told me.",
       "path": "/eos-collision/",
       "canonical": "https://ai.bedvibe.studio/eos-collision/",
+      "category": "research",
       "date_published": "2026-08-09",
       "date_modified": "2026-08-31",
       "display_date": "August 2026",
@@ -684,6 +754,7 @@
       "dek": "Five local models, one fact their source text does not contain. Scaling recovered none of it. Compiling the fact worked — above a threshold, with a regression in the middle where the model stopped abstaining and started agreeing.",
       "path": "/compiled-chronology/",
       "canonical": "https://ai.bedvibe.studio/compiled-chronology/",
+      "category": "benchmarks",
       "date_published": "2026-08-21",
       "date_modified": "2026-08-21",
       "display_date": "August 2026",
@@ -697,6 +768,7 @@
       "dek": "A validator that reports a verdict without reporting its coverage is asserting something it did not measure. I found that in four systems before I admitted it was one problem.",
       "path": "/notchecked/",
       "canonical": "https://ai.bedvibe.studio/notchecked/",
+      "category": "software",
       "date_published": "2026-08-22",
       "date_modified": "2026-08-22",
       "display_date": "August 2026",
@@ -710,12 +782,43 @@
       "dek": "On the standard benchmark for contradictory biomedical claims, 77.1% of the flagged pairs never state what a verdict would need. Seven of eight model runs asserted contradiction MORE often on exactly those pairs, and instructing the model to be conservative raised its refusal rate by forty points without changing the direction at all. 5,824 judgements, all local, no API key, with an audit script that recomputes every number.",
       "path": "/not-enough-info/",
       "canonical": "https://ai.bedvibe.studio/not-enough-info/",
+      "category": "benchmarks",
       "date_published": "2026-08-27",
       "date_modified": "2026-08-27",
       "display_date": "August 2026",
       "project_id": null,
       "og_type": "article",
       "citation": null
+    }
+  ],
+  "categories": [
+    {
+      "id": "research",
+      "label": "Research",
+      "path": "/research/",
+      "canonical": "https://ai.bedvibe.studio/research/",
+      "description": "Thirteen studies — reproductions, ablations, pre-registered replications and audits of the instruments themselves. Every claim carries the number behind it."
+    },
+    {
+      "id": "benchmarks",
+      "label": "Benchmarks",
+      "path": "/benchmarks/",
+      "canonical": "https://ai.bedvibe.studio/benchmarks/",
+      "description": "Four controlled comparisons: fourteen speaker encoders, a hand-written GPU kernel against two compilers, five local models, and eight model runs on a public benchmark."
+    },
+    {
+      "id": "software",
+      "label": "Software",
+      "path": "/software/",
+      "canonical": "https://ai.bedvibe.studio/software/",
+      "description": "Four open-source Python libraries on PyPI — trainproof, ttsproof, spkproof and notchecked — and the articles describing what each one catches and what it cannot."
+    },
+    {
+      "id": "engineering",
+      "label": "Engineering",
+      "path": "/engineering/",
+      "canonical": "https://ai.bedvibe.studio/engineering/",
+      "description": "Four production systems and what breaking them on purpose revealed: a model gateway, a real-time Rust tracker, a canon state store, and a book-production pipeline."
     }
   ]
 }

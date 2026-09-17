@@ -1,7 +1,17 @@
 import data from "./site-data.json";
-import type { SiteData, Project, Article } from "./types";
+import type { SiteData, Project, Article, Category } from "./types";
 
 export const site = data as unknown as SiteData;
+
+export function getCategory(id: string): Category {
+  const c = site.categories.find(x => x.id === id);
+  if (!c) throw new Error(`Category ${id} not found`);
+  return c;
+}
+
+export function getCategoryByPath(path: string): Category | undefined {
+  return site.categories.find(x => x.path === path);
+}
 
 export function getProject(id: string): Project {
   const p = site.projects.find(x => x.id === id);
@@ -26,3 +36,15 @@ export const articlesByDate: Article[] = [...site.articles].sort(
 
 // How many the front page shows before handing off to the full archive.
 export const HOME_ARTICLE_COUNT = 4;
+
+// Newest-first, like every other listing. An article with category null (the CV at
+// /work/) belongs to the archive but to no section, so it appears in no category page.
+export function articlesInCategory(categoryId: string): Article[] {
+  return articlesByDate.filter(a => a.category === categoryId);
+}
+
+// A category declared in site-data with nothing in it renders an empty page that says
+// nothing and still enters the sitemap. Cheaper to find here than in a crawl report.
+export function emptyCategories(): string[] {
+  return site.categories.filter(c => articlesInCategory(c.id).length === 0).map(c => c.id);
+}

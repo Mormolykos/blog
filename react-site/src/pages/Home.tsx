@@ -16,19 +16,35 @@ export const Home: React.FC = () => {
           the front door -- and it carries the followed link to the person page
           that the footer alone was carrying before. */}
       <section className="intro">
-        <img
-          className="intro-portrait"
-          src="https://bedvibe.studio/assets/panagiotis-panos-gkilis.png"
-          alt="Panagiotis (Panos) Gkilis, machine learning engineer and founder of BedVibe Studios"
-          width={120}
-          height={120}
-          loading="eager"
-        />
+        {/* The portrait belongs to the name, not to the essay: they sit together as
+            one identity line and the prose runs full width underneath at a readable
+            measure. Previously the image was a sibling of everything, so it stood in
+            its own column beside a narrow ragged block of text. */}
+        <div className="intro-head">
+          <img
+            className="intro-portrait"
+            src="https://bedvibe.studio/assets/panagiotis-panos-gkilis.png"
+            alt="Panagiotis (Panos) Gkilis, machine learning engineer and founder of BedVibe Studios"
+            width={112}
+            height={112}
+            loading="eager"
+          />
+          <div className="intro-id">
+            <h2 className="intro-name">Panagiotis (Panos) Gkilis</h2>
+            <p className="intro-role">
+              Machine Learning Engineer · Independent Researcher · Founder of BedVibe Studios
+            </p>
+            {/* The one link kept from what used to be a five-button row. Every other
+                button in it -- Work, Portfolio, ORCID -- already exists in the nav or
+                the footer, and "38-project portfolio" hard-coded a count that goes
+                stale the day a 39th ships. This one stays because the person page had
+                exactly one other followed link on the site, in the footer. */}
+            <p className="intro-profile">
+              <a href={site.site.author.url}>Full profile and CV</a>
+            </p>
+          </div>
+        </div>
         <div className="intro-body">
-          <h2 className="intro-name">Panagiotis (Panos) Gkilis</h2>
-          <p className="intro-role">
-            Machine Learning Engineer · Independent Researcher · Founder of BedVibe Studios
-          </p>
           <p className="intro-lead">
             I build AI and speech systems end to end &mdash; and then I build the
             instruments that tell me when those systems are lying about being correct.
@@ -44,21 +60,31 @@ export const Home: React.FC = () => {
             what a measurement <em>cannot</em> resolve &mdash; those are the same habits
             that make an evaluation gate worth trusting.
           </p>
-          <p className="intro-links">
-            <a className="cta" href="/work/">The engineering record &rarr;</a>
-            <a href="https://tts.bedvibe.studio/portfolio/">38-project portfolio</a>
-            <a href={site.site.author.url}>Full profile</a>
-            <a href="https://orcid.org/0009-0007-3805-170X">ORCID 0009-0007-3805-170X</a>
-            <a href="https://zenodo.org/search?q=Gkilis">Research on Zenodo</a>
-          </p>
         </div>
       </section>
 
+      {/* Every figure here is read from site-data.json or counted from it at build
+          time. None is typed into this file.
+
+          It used to carry four hand-written numbers and all four were a problem: the
+          DOI count said 9 when ORCID listed 10, "8 Model Context Protocol servers"
+          could not be sourced at all (the four MCP config files hold 8, 8, 9 and 9,
+          ten distinct between them), and the library count happened to be right by
+          luck. A number nothing recomputes is a number that is only ever correct on
+          the day it is typed. */}
       <div className="facts">
-        <div className="fact"><b>730M</b><span>parameter speech model, trained from scratch</span></div>
-        <div className="fact"><b>9</b><span>published research records with DOIs</span></div>
-        <div className="fact"><b>8</b><span>Model Context Protocol servers</span></div>
-        <div className="fact"><b>4</b><span>verification libraries on PyPI</span></div>
+        <div className="fact">
+          <b>{site.site.stats.model_params}</b>
+          <span>parameter speech model, trained from scratch</span>
+        </div>
+        <div className="fact">
+          <b>{site.site.stats.research_records}</b>
+          <span>published research records with DOIs</span>
+        </div>
+        <div className="fact">
+          <b>{site.projects.length}</b>
+          <span>verification libraries on PyPI</span>
+        </div>
       </div>
 
       {/* Stated in public for the first time here. Every individual system was
@@ -115,13 +141,28 @@ export const Home: React.FC = () => {
         ))}
       </div>
 
+      {/* The front page used to offer one route into 25 articles: a single link to a
+          flat archive. A reader arriving for the encoder benchmark and a reader
+          arriving for the libraries were given the same undifferentiated list. */}
+      <h2>Sections</h2>
+      <p className="section-note">
+        The same writing, grouped by what kind of work it is.
+      </p>
+      <ul className="section-index">
+        {site.categories.map(c => (
+          <li key={c.id}>
+            <a href={c.path}>{c.label}</a> — {c.description}
+          </li>
+        ))}
+      </ul>
+
       <h2>Latest Articles</h2>
       {latest.map(a => (
         <ArticleCard key={a.id} article={a} />
       ))}
       {remaining > 0 && (
         <p className="archive-link">
-          <a href="/articles/">All {articlesByDate.length} articles →</a>
+          <a href="/articles/">All {articlesByDate.length} articles, newest first →</a>
         </p>
       )}
     </>

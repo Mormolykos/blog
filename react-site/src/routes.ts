@@ -1,6 +1,10 @@
 import type React from 'react';
 import { Home } from './pages/Home';
 import { Articles } from './pages/Articles';
+import { Research } from './pages/Research';
+import { Benchmarks } from './pages/Benchmarks';
+import { Software } from './pages/Software';
+import { Engineering } from './pages/Engineering';
 import { TtsproofArticle } from './pages/articles/TtsproofArticle';
 import { TrainproofArticle } from './pages/articles/TrainproofArticle';
 import { AiAuthorshipArticle } from './pages/articles/AiAuthorshipArticle';
@@ -26,6 +30,7 @@ import { EncodersDisagreeArticle } from './pages/articles/EncodersDisagreeArticl
 import { RetrievalAblationArticle } from './pages/articles/RetrievalAblationArticle';
 import { DecisionRiskArticle } from './pages/articles/DecisionRiskArticle';
 import { HandWrittenKernelArticle } from './pages/articles/HandWrittenKernelArticle';
+import { DecoderBenchmarkArticle } from './pages/articles/DecoderBenchmarkArticle';
 
 // THE route table. One list, two consumers: scripts/prerender.tsx (production
 // static build) and src/main.tsx (dev preview).
@@ -40,6 +45,14 @@ import { HandWrittenKernelArticle } from './pages/articles/HandWrittenKernelArti
 export const routes: Record<string, React.FC> = {
   '/': Home,
   '/articles/': Articles,
+  // The four sections. /articles/ remains the full archive in date order; these group
+  // the same articles by what kind of work they are. Their paths are declared in
+  // site-data.json categories[], which the sitemap, llms.txt and head.ts all read --
+  // this table is the only place they are bound to a component.
+  '/research/': Research,
+  '/benchmarks/': Benchmarks,
+  '/software/': Software,
+  '/engineering/': Engineering,
   '/ttsproof/': TtsproofArticle,
   '/trainproof/': TrainproofArticle,
   '/ai-authorship/': AiAuthorshipArticle,
@@ -65,4 +78,5 @@ export const routes: Record<string, React.FC> = {
   '/retrieval-ablation/': RetrievalAblationArticle,
   '/decision-risk/': DecisionRiskArticle,
   '/hand-written-kernel/': HandWrittenKernelArticle,
+  '/decoder-benchmark/': DecoderBenchmarkArticle,
 };

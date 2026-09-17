@@ -167,3 +167,80 @@ footer {
   color: #aaa;
   margin-top: 0.2rem;
 }
+
+/* Category pages. The site's heading scale stopped at h3 because no page had ever
+   needed a fourth level: /articles/ is a page title plus a flat list of items. A
+   section page is title -> section -> item, which is one level deeper. */
+h4 { color: #e9edf5; margin-top: 2rem; }
+.article-list-item h4 { margin: 0 0 0.5rem 0; font-size: 1.2rem; }
+.section-note { color: #aaa; margin-top: 0.3rem; }
+.section-index { color: #aaa; line-height: 1.6; padding-left: 1.2rem; }
+.section-index li { margin-bottom: 0.6rem; }
+
+/* ---------------------------------------------------------------------------
+   Homepage intro, facts and arcs.
+
+   Twelve class names were rendered by Home.tsx and defined nowhere, so the front
+   page fell back to default block flow: the portrait alone on its own line, five
+   identity links running together as one unbroken string, "730Mparameter" in the
+   stat row. Markup was never the problem -- the stylesheet stopped before it got
+   here.
+   --------------------------------------------------------------------------- */
+
+/* Portrait + name + role are ONE unit. The prose is not in that unit: it runs the
+   full measure underneath, because a 120px column beside a paragraph gives the
+   paragraph about forty characters a line and makes two unrelated boxes out of
+   one person. */
+.intro { margin: 0.5rem 0 2.2rem; }
+.intro-head {
+  display: flex; align-items: center; gap: 1.1rem;
+  padding-bottom: 1.3rem; margin-bottom: 1.4rem;
+  border-bottom: 1px solid var(--border-color);
+}
+.intro-portrait {
+  flex: 0 0 auto; width: 112px; height: 112px;
+  border-radius: 50%; object-fit: cover; object-position: center 28%;
+  border: 2px solid rgba(77, 184, 255, 0.35);
+  box-shadow: 0 0 0 5px rgba(77, 184, 255, 0.07), 0 6px 22px rgba(0, 0, 0, 0.45);
+}
+.intro-id { min-width: 0; }
+.intro-name {
+  margin: 0 0 0.25rem; font-size: 1.65rem; line-height: 1.2; color: #e9edf5;
+  font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+  letter-spacing: 0.01em;
+}
+.intro-role {
+  margin: 0; color: #9fb6cc; font-size: 0.95rem; line-height: 1.45;
+}
+.intro-profile { margin: 0.45rem 0 0; font-size: 0.9rem; }
+.intro-lead { margin: 0 0 1.1rem; }
+.intro-lead:last-child { margin-bottom: 0; }
+
+.facts {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+  margin: 2.2rem 0; padding: 1.3rem 0;
+  border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color);
+}
+.fact { text-align: center; }
+.fact b {
+  display: block; font-size: 1.75rem; line-height: 1.15; color: #e9edf5;
+  font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
+}
+.fact span {
+  display: block; margin: 0.35rem auto 0; max-width: 15rem;
+  font-size: 0.85rem; line-height: 1.4; color: #aaa;
+}
+
+.arcs { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin: 1rem 0 2.2rem; }
+.arc {
+  background: var(--header-bg); border: 1px solid var(--border-color);
+  border-radius: 10px; padding: 1.1rem 1.25rem;
+}
+.arc h3 { margin: 0 0 0.5rem; font-size: 1.05rem; }
+.arc p { margin: 0; color: #aaa; font-size: 0.92rem; }
+
+@media (max-width: 640px) {
+  .intro-head { flex-direction: column; align-items: center; text-align: center; gap: 0.9rem; }
+  .facts { grid-template-columns: 1fr; gap: 1.3rem; }
+  .arcs { grid-template-columns: 1fr; }
+}

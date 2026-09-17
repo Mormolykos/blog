@@ -118,7 +118,7 @@ worst relative error: 4.6e-15`}</code></pre>
 
       <h2>Reproduce it</h2>
 
-      <p>One file, one command, about fifty seconds: <code>python fem_003.py</code>. It prints all ten gate results and writes its own evidence — the full gate log, convergence tables, hoop-stress data and both figures above. The archive, including the pre-registered audit, is deposited at <a href="https://doi.org/10.5281/zenodo.21892064" target="_blank" rel="noopener">doi.org/10.5281/zenodo.21892064</a>.</p>
+      <p>One file, one command, about fifty seconds: <code>python fem_003.py</code>. It prints all ten gate results and writes its own evidence — the full gate log, convergence tables, hoop-stress data and both figures above. The archive, including the pre-registered audit, is deposited at <a href="https://doi.org/10.5281/zenodo.21892063" target="_blank" rel="noopener">doi.org/10.5281/zenodo.21892063</a>.</p>
 
       <p>If you take one thing from this: writing the tests down first cost me an afternoon and bought me the only genuinely interesting result in the project. A gate you write after seeing the number is not a gate. It is a description.</p>
     </article>

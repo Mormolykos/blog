@@ -29,7 +29,7 @@ export const TtsproofArticle: React.FC = () => {
       </ul>
       
       <h2>The study: 390 samples, and a blind human check</h2>
-      <p>I evaluated the method against a production neural TTS service — <strong>130 edge cases × 3 voices = 390 samples</strong> — and published it as a citable technical report (<a href="https://doi.org/10.5281/zenodo.20757553" target="_blank" rel="noopener noreferrer">DOI 10.5281/zenodo.20757553</a>, CC-BY-4.0).</p>
+      <p>I evaluated the method against a production neural TTS service — <strong>130 edge cases × 3 voices = 390 samples</strong> — and published it as a citable technical report (<a href="https://doi.org/10.5281/zenodo.20757552" target="_blank" rel="noopener noreferrer">DOI 10.5281/zenodo.20757552</a>, CC-BY-4.0).</p>
       <ul>
       <li><strong>Zero structural audio-integrity defects</strong> across all 390 clips — the audio was always structurally clean, which matters, because it means the failures that <em>did</em> exist were all pronunciation, exactly the kind WER mislabels.</li>
       <li>Exact-match rate <strong>0.769</strong>.</li>
@@ -84,7 +84,7 @@ pip install "ttsproof[asr]"     # + faster-whisper for pronunciation gating
       </code></pre>
       <ul>
       <li>Repo: <strong><a href="https://github.com/Mormolykos/ttsproof" target="_blank" rel="noopener noreferrer">https://github.com/Mormolykos/ttsproof</a></strong> (MIT)</li>
-      <li>The study: <strong><a href="https://doi.org/10.5281/zenodo.20757553" target="_blank" rel="noopener noreferrer">https://doi.org/10.5281/zenodo.20757553</a></strong></li>
+      <li>The study: <strong><a href="https://doi.org/10.5281/zenodo.20757552" target="_blank" rel="noopener noreferrer">https://doi.org/10.5281/zenodo.20757552</a></strong></li>
       </ul>
       <p>It's already had its first outside contribution — a community fix for a real number-formatting bug — which is exactly the kind of thing I hoped for. If your TTS breaks on something, open an issue with the case; the corpus grows from real failures.</p>
     </article>

@@ -152,7 +152,7 @@ restrict to the clean corpus  up 0.0556   down 0.0845   p = 0.013</code></pre>
 
       <p><strong>And the effect appears at magnitudes nobody protects against.</strong> Not shouting, not whispering, not disguise. Someone speaking a little lower than usual, in a way you would not consciously notice.</p>
 
-      <p><em>Everything is archived: <a href="https://doi.org/10.5281/zenodo.21921958">doi:10.5281/zenodo.21921958</a>. The manuscript, the pre-registration, the full prior-art audit including the claim it killed, per-utterance measurement tables for all three encoders, a provenance manifest mapping every row to its source recording and time offsets, every analysis script, and the 137 source recordings.</em></p>
+      <p><em>Everything is archived: <a href="https://doi.org/10.5281/zenodo.21921957">doi:10.5281/zenodo.21921957</a>. The manuscript, the pre-registration, the full prior-art audit including the claim it killed, per-utterance measurement tables for all three encoders, a provenance manifest mapping every row to its source recording and time offsets, every analysis script, and the 137 source recordings.</em></p>
 
       <p><em>The audio carries restricted terms. Research, benchmarking, evaluation and teaching are permitted. <strong>Use as training, fine-tuning or distillation data for any machine-learning model, and use for voice cloning or synthetic-voice generation, are prohibited.</strong> The speakers are four identifiable adults, three of whom are under separate commercial voice contract. If you maintain a training-data exclusion list, this record is meant to be on it.</em></p>
     </article>

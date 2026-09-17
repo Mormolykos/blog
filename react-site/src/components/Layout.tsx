@@ -33,8 +33,9 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           <a href={site.site.author.url} target="_blank" rel="noopener noreferrer">
             <strong>{site.site.author.name}</strong>
           </a>{" "}
-          — founder, <a href="https://bedvibe.studio/" target="_blank" rel="noopener noreferrer">BedVibe Studios</a>,
-          a registered Norwegian studio (org. no. 935&nbsp;267&nbsp;897).
+          — founder, <a href="https://bedvibe.studio/" target="_blank" rel="noopener noreferrer">{site.site.org.name}</a>,
+          the operating brand of <strong>{site.site.org.legal_name}</strong>, a sole proprietorship
+          registered in Norway (org. no. {site.site.org.org_number.replace(/ /g, ' ')}).
         </div>
         <div style={{ marginTop: '0.6rem' }}>
           <a href="https://bedvibe.studio/" target="_blank" rel="noopener noreferrer">Main hub</a> &middot;{" "}

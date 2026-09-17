@@ -78,7 +78,7 @@ fbc573d  2026-09-03 23:52:38  analysis code
 
       <h2>Everything is in the record</h2>
       <p>The paper, the complete analysis code, and all <strong>41,790 raw per-seed measurements</strong> are archived with a DOI. <code>verify.py</code> re-runs the toolchain pin check, the test suite, the numeric inventory, the replication artifact and a proof of one withdrawn claim, in under a minute.</p>
-      <p><a href="https://doi.org/10.5281/zenodo.22310060">10.5281/zenodo.22310060</a></p>
+      <p><a href="https://doi.org/10.5281/zenodo.22310059">10.5281/zenodo.22310059</a></p>
       <p>If you maintain a benchmark that drives accept/reject decisions on a stochastic system, the cheap version of this check is: run the same comparison twenty times without changing anything, and look at the spread of verdicts rather than the spread of values. If the verdict moves, the number of runs is part of your instrument, and it belongs in the write-up.</p>
     </article>
   );
