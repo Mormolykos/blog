@@ -1,4 +1,5 @@
 import React from 'react';
+import { SectionIcon } from '../components/SectionIcon';
 import { articlesByDate } from '../data/site';
 import { ArticleCard } from '../components/ArticleCard';
 
@@ -9,7 +10,7 @@ import { ArticleCard } from '../components/ArticleCard';
 export const Articles: React.FC = () => {
   return (
     <>
-      <h2>All Articles</h2>
+      <h1><SectionIcon name="articles" /> All Articles</h1>
       <p className="archive-intro">
         Every article published here, newest first — {articlesByDate.length} in total.
         Each one covers something built and what it turned out to be wrong about.

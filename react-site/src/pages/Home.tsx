@@ -1,4 +1,5 @@
 import React from 'react';
+import { SectionIcon } from '../components/SectionIcon';
 import { site, articlesByDate, HOME_ARTICLE_COUNT } from '../data/site';
 import { ProjectStatus } from '../components/ProjectStatus';
 import { ArticleCard } from '../components/ArticleCard';
@@ -30,7 +31,7 @@ export const Home: React.FC = () => {
             loading="eager"
           />
           <div className="intro-id">
-            <h2 className="intro-name">Panagiotis (Panos) Gkilis</h2>
+            <h1 className="intro-name">Panagiotis (Panos) Gkilis</h1>
             <p className="intro-role">
               Machine Learning Engineer · Independent Researcher · Founder of BedVibe Studios
             </p>
@@ -151,7 +152,7 @@ export const Home: React.FC = () => {
       <ul className="section-index">
         {site.categories.map(c => (
           <li key={c.id}>
-            <a href={c.path}>{c.label}</a> — {c.description}
+            <SectionIcon name={c.id} /> <a href={c.path}>{c.label}</a> — {c.description}
           </li>
         ))}
       </ul>

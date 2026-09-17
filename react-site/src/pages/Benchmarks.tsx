@@ -1,4 +1,5 @@
 import React from 'react';
+import { SectionIcon } from '../components/SectionIcon';
 import { CategorySection, CategoryIntro, assertSectionsCover } from '../components/CategoryPage';
 
 const SECTIONS = [
@@ -32,7 +33,7 @@ export const Benchmarks: React.FC = () => {
 
   return (
     <>
-      <h2>Benchmarks</h2>
+      <h1><SectionIcon name="benchmarks" /> Benchmarks</h1>
       <CategoryIntro id="benchmarks">
         <p>
           Four controlled comparisons. Each one holds everything constant except the

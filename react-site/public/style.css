@@ -31,7 +31,9 @@ header .logo {
 @media (prefers-reduced-motion: reduce) {
   header .logo { animation: none; filter: drop-shadow(0 0 20px rgba(96, 178, 255, 0.5)); }
 }
-header h1 {
+/* Was `header h1`. The site name is a <p class="site-title"> now so that each page's
+   own subject can hold the h1 -- see the comment in Layout.tsx. Identical rendering. */
+header .site-title {
   margin: 0; font-size: 1.8rem; font-weight: 500; color: #e9edf5;
   font-family: Georgia, "Palatino Linotype", "Book Antiqua", serif;
   letter-spacing: 0.02em;
@@ -244,3 +246,15 @@ h4 { color: #e9edf5; margin-top: 2rem; }
   .facts { grid-template-columns: 1fr; gap: 1.3rem; }
   .arcs { grid-template-columns: 1fr; }
 }
+
+/* Section glyphs. Sized in em so they track whatever text they sit beside, and
+   nudged down a fraction because an optical centre sits below a capital's midline. */
+.section-icon {
+  display: inline-block;
+  vertical-align: -0.12em;
+  margin-right: 0.38em;
+  opacity: 0.72;
+  flex: 0 0 auto;
+}
+h1 .section-icon { opacity: 0.6; }
+.section-index .section-icon { opacity: 0.55; }

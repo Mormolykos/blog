@@ -1,4 +1,5 @@
 import React from 'react';
+import { SectionIcon } from '../components/SectionIcon';
 import { CategorySection, CategoryIntro, assertSectionsCover } from '../components/CategoryPage';
 
 // Thirteen items, grouped so the page is not a second flat list. The grouping lives
@@ -49,7 +50,7 @@ export const Research: React.FC = () => {
 
   return (
     <>
-      <h2>Research</h2>
+      <h1><SectionIcon name="research" /> Research</h1>
       <CategoryIntro id="research">
         <p>
           Thirteen studies. Some reproduce a result with a known answer to find out what

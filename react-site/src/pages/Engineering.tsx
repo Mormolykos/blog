@@ -1,4 +1,5 @@
 import React from 'react';
+import { SectionIcon } from '../components/SectionIcon';
 import { CategorySection, CategoryIntro, assertSectionsCover } from '../components/CategoryPage';
 
 const SECTIONS = [
@@ -25,7 +26,7 @@ export const Engineering: React.FC = () => {
 
   return (
     <>
-      <h2>Engineering</h2>
+      <h1><SectionIcon name="engineering" /> Engineering</h1>
       <CategoryIntro id="engineering">
         <p>
           Four production systems, written up as case studies rather than as results.

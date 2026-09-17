@@ -1,4 +1,5 @@
 import React from 'react';
+import { SectionIcon } from '../components/SectionIcon';
 import { site } from '../data/site';
 import { ProjectStatus } from '../components/ProjectStatus';
 import { CategorySection, CategoryIntro, assertSectionsCover } from '../components/CategoryPage';
@@ -20,7 +21,7 @@ export const Software: React.FC = () => {
 
   return (
     <>
-      <h2>Software</h2>
+      <h1><SectionIcon name="software" /> Software</h1>
       <CategoryIntro id="software">
         <p>
           Four open-source Python libraries, all on PyPI, all MIT-licensed, all

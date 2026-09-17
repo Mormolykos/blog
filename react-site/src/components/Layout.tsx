@@ -9,7 +9,13 @@ export const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) =>
           {site.site.corner_link.label}
         </a>
         <a href="/"><img src="/Bedvibe-logo.webp" alt="BedVibe Studios" className="logo" /></a>
-        <h1>{site.site.name}</h1>
+        {/* Not an <h1>. Until 2026-09-17 this was one, on all 32 pages: it made the site
+            name the first heading of every article and the ONLY heading of /articles/,
+            /research/, /benchmarks/, /software/ and /engineering/ -- five pages whose
+            strongest on-page signal said "BedVibe Studios — Engineering" instead of what
+            the page is about. The site name belongs in the header, not in the heading
+            outline; each page's own subject is now its h1. */}
+        <p className="site-title">{site.site.name}</p>
       </header>
       <nav>
         {site.site.nav.map((item, i) => (
