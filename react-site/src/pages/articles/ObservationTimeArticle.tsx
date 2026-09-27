@@ -11,9 +11,9 @@ export const ObservationTimeArticle: React.FC = () => {
 
       <p>Aether is a small, self-contained piece of software — around two thousand lines of Rust — that does one job. It takes a live stream of position reports about moving objects and turns it into a trustworthy picture: where everything is, where it is heading, and which pairs are on course to come dangerously close to one another.</p>
 
-      <p>It runs continuously, updates many times a second, and is built as a <strong>component rather than an application</strong>. Its collision-screening core is exposed over a plain C interface, so an existing C or C++ system can call it directly without knowing that Rust is involved at all.</p>
+      <p>It runs continuously, updates many times a second, and is built as a <strong>component rather than an application</strong>. Its closest-approach primitive is exposed over a plain C interface, so an existing C or C++ system can call it directly without knowing that Rust is involved at all.</p>
 
-      <p>The demonstration it ships with tracks aircraft. Every airliner broadcasts its own identity, position and altitude over radio roughly once a second — a public signal called ADS-B, which anyone with a receiver can hear. Aether listens to about 150 aircraft over Greece at a time, maintains an independent estimate of each one, and checks all of them against each other for closest approach, raising a warning for any pair that would breach the separation minimum air traffic control enforces. A full cycle — read the feed, update every track, screen every pair, redraw — completes in under a millisecond.</p>
+      <p>The demonstration it ships with tracks aircraft. Every airliner broadcasts its own identity, position and altitude over radio roughly once a second — a public signal called ADS-B, which anyone with a receiver can hear. Aether listens to about 150 aircraft over Greece at a time, maintains an independent estimate of each one, and checks every pair against each other, raising a warning for any pair that will be inside both the horizontal and the vertical separation minimum air traffic control enforces at the same moment. A full cycle — read the feed, update every track, screen every pair, redraw — completes in under a millisecond.</p>
 
       <h2>What a component like this is used for</h2>
 
@@ -45,7 +45,7 @@ export const ObservationTimeArticle: React.FC = () => {
 
       <h2>Why it exists, and what it is not yet</h2>
 
-      <p>Aether exists to be a complete, measured reference implementation of that component: small enough to read in an afternoon, and honest enough that every number published about it can be reproduced by running the code. There are 55 tests. The performance figures come from timing the real loop, not from an estimate. The results below come from a controlled A/B against a live feed, not from a simulation tuned to make the point.</p>
+      <p>Aether exists to be a complete, measured reference implementation of that component: small enough to read in an afternoon, and honest enough that every number published about it can be reproduced by running the code. There are 59 tests. The performance figures come from timing the real loop, not from an estimate. The results below come from a controlled A/B against a live feed, not from a simulation tuned to make the point.</p>
 
       <p>It is an early version and is not presented as finished. The ingestion adapter is the obvious extension point — AIS, radar tracks, GNSS telemetry, an onboard sensor bus. The estimator has clear room to grow: a manoeuvre model for targets that turn, and recovery of measurements that arrive too late to use rather than discarding them. Those are named in the repository's future-work section rather than implied here.</p>
 
@@ -55,7 +55,7 @@ export const ObservationTimeArticle: React.FC = () => {
 
       <h2>The measured problem</h2>
 
-      <p>In technical terms: Aether polls a public ADS-B feed, keeps a Kalman-filtered track per aircraft, and screens every pair for closest point of approach against ICAO separation minima.</p>
+      <p>In technical terms: Aether polls a public ADS-B feed, keeps a Kalman-filtered track per aircraft, and screens every pair for loss of separation against ICAO separation minima.</p>
 
       <p>It ran clean. Tests passed, the picture looked right, the numbers were plausible. And it was refusing about one measurement in nine — visible only because the rejections went to a counter rather than a log line. That single design choice is the reason there is anything to report.</p>
 
@@ -172,6 +172,16 @@ pooled   pre-fix       886 / 5,507         16.1%
 
       <p>The independent confirmation: after the fix, long-range altitudes land on exact flight levels — 36,000, 45,000, 47,001 ft. Real barometric altitudes sit on flight levels. Wrong ones do not.</p>
 
+      <h2>Closest approach is not the question</h2>
+
+      <p>The screening logic had a quiet failure of its own, and it was found by an independent adversarial audit of the code rather than by the live feed. The screen computed the moment two aircraft would be closest in three dimensions, then asked whether they were inside both separation minima at that moment. That sounds like the natural question. It is the wrong one.</p>
+
+      <p>Separation is two limits, 5 NM horizontally and 1,000 ft vertically, and metres of altitude are not interchangeable with metres of range against them. Take two aircraft 15 km apart, closing at 100 m/s, one of them 600 m lower and climbing at 10 m/s relative to the other. At 60 seconds they are 9 km apart and level: inside both minima, a real loss of separation. But their closest approach in three dimensions comes at 149 seconds, when the horizontal gap has almost closed and the vertical one has opened to 891 m. Judged only at that instant, the pair looked safe, and no warning was raised.</p>
+
+      <p>The fix asks the question the rules actually ask: is there any moment in the look-ahead window when the pair is inside both limits at once? Each limit has a closed form. Vertical separation changes linearly and horizontal separation squared is a quadratic, so each gives an exact window of time, and the alert is their overlap. For the pair above that is 57.4 to 90.5 seconds, and the screen now says so. The same audit found a shortcut filter that compared a three-dimensional distance against the horizontal limit and so discarded a pair already inside both minima. It is gone. Both cases went in as failing tests before the code changed, and a property check over 4,000 generated geometries catches either defect if it ever comes back.</p>
+
+      <p>The general form: <strong>when a safety rule is a conjunction of separate limits, collapsing it into one distance and checking one instant answers a question nobody asked.</strong> The rule defines a region; the test is whether the trajectory ever enters it.</p>
+
       <h2>What this is and isn't</h2>
 
       <p>It is one system, one sensor, one feed, measured across four 45-second windows on a single afternoon from a single IP against an upstream that throttles. It is not a controlled study and I would not generalise the 16.1% to anyone else's pipeline. A different poll rate, a different feed, a different gate width, or a filter tuned more loosely would all produce a different number — and a looser gate would produce a smaller one while quietly accepting the corrupted measurements instead, which is worse.</p>
@@ -186,7 +196,7 @@ pooled   pre-fix       886 / 5,507         16.1%
 
       <p>And a constant lag will hide it from you completely. It is the jitter that bites, which means the systems most likely to have this bug are the ones whose feeds are <em>usually</em> fast.</p>
 
-      <p><em>The engine is open source under MIT at <a href="https://github.com/Mormolykos/aether">github.com/Mormolykos/aether</a> — 55 tests, clippy clean at <code>-D warnings</code>. It is surveillance and state estimation only: no targeting, engagement or weapon functionality of any kind. The README carries the full measured results and a limitations section considerably longer than this article's.</em></p>
+      <p><em>The engine is open source under MIT at <a href="https://github.com/Mormolykos/aether">github.com/Mormolykos/aether</a> — 59 tests, clippy clean at <code>-D warnings</code>. It is surveillance and state estimation only: no targeting, engagement or weapon functionality of any kind. The README carries the full measured results and a limitations section considerably longer than this article's.</em></p>
     </article>
   );
 };
