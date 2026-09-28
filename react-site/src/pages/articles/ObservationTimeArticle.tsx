@@ -45,7 +45,7 @@ export const ObservationTimeArticle: React.FC = () => {
 
       <h2>Why it exists, and what it is not yet</h2>
 
-      <p>Aether exists to be a complete, measured reference implementation of that component: small enough to read in an afternoon, and honest enough that every number published about it can be reproduced by running the code. There are 59 tests. The performance figures come from timing the real loop, not from an estimate. The results below come from a controlled A/B against a live feed, not from a simulation tuned to make the point.</p>
+      <p>Aether exists to be a complete, measured reference implementation of that component: small enough to read in an afternoon, and honest enough that every number published about it can be reproduced by running the code. There are 96 tests. The performance figures come from timing the real loop, not from an estimate. The results below come from a controlled A/B against a live feed, not from a simulation tuned to make the point.</p>
 
       <p>It is an early version and is not presented as finished. The ingestion adapter is the obvious extension point — AIS, radar tracks, GNSS telemetry, an onboard sensor bus. The estimator has clear room to grow: a manoeuvre model for targets that turn, and recovery of measurements that arrive too late to use rather than discarding them. Those are named in the repository's future-work section rather than implied here.</p>
 
@@ -178,7 +178,7 @@ pooled   pre-fix       886 / 5,507         16.1%
 
       <p>Separation is two limits, 5 NM horizontally and 1,000 ft vertically, and metres of altitude are not interchangeable with metres of range against them. Take two aircraft 15 km apart, closing at 100 m/s, one of them 600 m lower and climbing at 10 m/s relative to the other. At 60 seconds they are 9 km apart and level: inside both minima, a real loss of separation. But their closest approach in three dimensions comes at 149 seconds, when the horizontal gap has almost closed and the vertical one has opened to 891 m. Judged only at that instant, the pair looked safe, and no warning was raised.</p>
 
-      <p>The fix asks the question the rules actually ask: is there any moment in the look-ahead window when the pair is inside both limits at once? Each limit has a closed form. Vertical separation changes linearly and horizontal separation squared is a quadratic, so each gives an exact window of time, and the alert is their overlap. For the pair above that is 57.4 to 90.5 seconds, and the screen now says so. The same audit found a shortcut filter that compared a three-dimensional distance against the horizontal limit and so discarded a pair already inside both minima. It is gone. Both cases went in as failing tests before the code changed, and a property check over 4,000 generated geometries catches either defect if it ever comes back.</p>
+      <p>The fix asks the question the rules actually ask: is there any moment in the look-ahead window when the pair is inside both limits at once? Each limit has a closed form. Vertical separation changes linearly and horizontal separation squared is a quadratic, so each gives an exact window of time, and the alert is their overlap. For the pair above that is 57.4 to 90.5 seconds, and the screen now says so. The same audit found a shortcut filter that compared a three-dimensional distance against the horizontal limit and so discarded a pair already inside both minima. It is gone. Both cases went in as failing tests before the code changed, and a property check over 4,000 generated geometries catches either defect if it ever comes back. A later round showed that such a window can be narrower than the spacing of floating-point numbers, so whether the windows overlap is now decided from the proven signs of a few polynomials rather than from their rounded ends.</p>
 
       <p>The general form: <strong>when a safety rule is a conjunction of separate limits, collapsing it into one distance and checking one instant answers a question nobody asked.</strong> The rule defines a region; the test is whether the trajectory ever enters it.</p>
 
@@ -196,7 +196,7 @@ pooled   pre-fix       886 / 5,507         16.1%
 
       <p>And a constant lag will hide it from you completely. It is the jitter that bites, which means the systems most likely to have this bug are the ones whose feeds are <em>usually</em> fast.</p>
 
-      <p><em>The engine is open source under MIT at <a href="https://github.com/Mormolykos/aether">github.com/Mormolykos/aether</a> — 59 tests, clippy clean at <code>-D warnings</code>. It is surveillance and state estimation only: no targeting, engagement or weapon functionality of any kind. The README carries the full measured results and a limitations section considerably longer than this article's.</em></p>
+      <p><em>The engine is open source under MIT at <a href="https://github.com/Mormolykos/aether">github.com/Mormolykos/aether</a> — 96 tests, clippy clean at <code>-D warnings</code>. It is surveillance and state estimation only: no targeting, engagement or weapon functionality of any kind. The README carries the full measured results and a limitations section considerably longer than this article's.</em></p>
     </article>
   );
 };
